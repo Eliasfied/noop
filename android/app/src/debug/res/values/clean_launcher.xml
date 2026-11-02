@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The icon artwork's own edge colour, behind the foreground while a launcher animates it. -->
+    <color name="clean_launcher_background">#030C36</color>
+</resources>
