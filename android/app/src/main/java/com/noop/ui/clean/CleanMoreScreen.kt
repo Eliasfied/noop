@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
+import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.EditNote
 import androidx.compose.material.icons.rounded.FitnessCenter
 import androidx.compose.material.icons.rounded.HealthAndSafety
@@ -178,6 +179,7 @@ private val cleanPages = listOf(
     CleanPage(CleanRoutes.JOURNAL, Icons.Rounded.EditNote, R.string.clean_journal_title, CleanColors.sleep),
     CleanPage(CleanRoutes.WORKOUTS, Icons.Rounded.FitnessCenter, R.string.clean_workouts, CleanColors.strain),
     CleanPage(CleanRoutes.HEALTH, Icons.Rounded.HealthAndSafety, R.string.clean_health_title, CleanColors.good),
+    CleanPage(CleanRoutes.COACH, Icons.Rounded.AutoAwesome, R.string.clean_coach_title, CleanColors.sleepBright),
 )
 
 @Composable
@@ -186,7 +188,8 @@ private fun CleanPagesGroup(onNavigate: (String) -> Unit, modifier: Modifier = M
         SectionLabel(stringResource(R.string.clean_more_pages))
         Spacer(Modifier.height(6.dp))
         GlassCard(padding = 4.dp) {
-            cleanPages.forEachIndexed { i, page ->
+            val pages = cleanPages.filter { it.route != CleanRoutes.COACH || BottomBarStyleStore.coachEnabled }
+            pages.forEachIndexed { i, page ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -205,7 +208,7 @@ private fun CleanPagesGroup(onNavigate: (String) -> Unit, modifier: Modifier = M
                     )
                     Icon(Icons.Rounded.ChevronRight, null, tint = CleanColors.textTertiary)
                 }
-                if (i < cleanPages.lastIndex) {
+                if (i < pages.lastIndex) {
                     HorizontalDivider(color = CleanColors.hairline, modifier = Modifier.padding(start = 62.dp, end = 14.dp))
                 }
             }

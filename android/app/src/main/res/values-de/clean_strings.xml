@@ -541,4 +541,39 @@
     <string name="clean_coach_q_sleep">Ich habe letzte Nacht %1$s geschlafen, Schlafleistung %2$s. Was hat geholfen oder geschadet, und was sollte ich heute Abend ändern?</string>
     <string name="clean_coach_q_stress">Mein Stress liegt heute bei %1$s von 3. Was kann ich dagegen tun?</string>
     <string name="clean_coach_q_health">Mein Körperalter liegt bei %1$s, mein echtes Alter bei %2$d. Was würde den größten Unterschied machen?</string>
+    <!-- Number tiles -->
+    <string name="clean_numbers_title">Deine Werte</string>
+    <string name="clean_tile_heart_rate">Puls</string>
+    <string name="clean_tile_live">live</string>
+    <string name="clean_tile_just_now">gerade eben</string>
+    <string name="clean_tile_minutes_ago">vor %1$d Min.</string>
+    <string name="clean_tile_start_live">Tippen für Live-Puls</string>
+    <string name="clean_tile_learning">Normalwert wird gelernt</string>
+    <string name="clean_tile_normal">im Normalbereich</string>
+    <string name="clean_tile_vs_normal">%1$s ggü. normal</string>
+    <string name="clean_tile_today_estimated">heute, geschätzt</string>
+
+    <!-- Coach chat -->
+    <string name="clean_coach_title">Coach</string>
+    <string name="clean_coach_settings">Coach-Einstellungen</string>
+    <string name="clean_coach_setup_title">Dein persönlicher Coach</string>
+    <string name="clean_coach_setup_privacy">Dein Schlüssel wird verschlüsselt auf diesem Handy gespeichert. Es wird nichts gesendet, bevor du einen Anbieter einrichtest und eine Frage stellst.</string>
+    <string name="clean_coach_consent_off">Die Datenfreigabe ist aus: Der Coach sieht deine Werte nicht. Tippen, um sie in den Einstellungen zu erlauben.</string>
+    <string name="clean_coach_empty_title">Was möchtest du wissen?</string>
+    <string name="clean_coach_empty_body">Frag nach Erholung, Belastung, Schlaf oder Gewohnheiten. Der Coach antwortet anhand deiner eigenen Daten.</string>
+    <string name="clean_coach_q_hrv">Warum schwankt meine HRV so stark?</string>
+    <string name="clean_coach_q_week">Wie lief meine letzte Woche und worauf sollte ich achten?</string>
+    <string name="clean_coach_follow_today">Was heißt das für heute?</string>
+    <string name="clean_coach_follow_simpler">Erklär das einfacher</string>
+    <string name="clean_coach_follow_tomorrow">Was sollte ich morgen ändern?</string>
+    <string name="clean_coach_copy">Kopieren</string>
+    <string name="clean_coach_save_journal">Ins Logbuch</string>
+    <string name="clean_coach_saved">Gespeichert</string>
+    <string name="clean_coach_placeholder">Frag den Coach …</string>
+    <string name="clean_coach_send">Senden</string>
+    <string name="clean_coach_key_rejected">Der Anbieter hat den Schlüssel abgelehnt. Tippen, um ihn zu ändern.</string>
+    <string name="clean_coach_clear_title">Neues Gespräch beginnen</string>
+    <string name="clean_coach_clear_body">Das löscht das aktuelle Gespräch auf diesem Handy.</string>
+    <string name="clean_coach_clear_confirm">Löschen</string>
+    <string name="clean_cancel">Abbrechen</string>
 </resources>

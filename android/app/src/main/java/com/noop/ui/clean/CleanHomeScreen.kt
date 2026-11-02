@@ -93,6 +93,7 @@ internal fun CleanHomeScreen(
     onOpenHealth: () -> Unit,
     onAsk: (String) -> Unit,
     onOpenCoach: () -> Unit,
+    onOpenLive: () -> Unit,
 ) {
     val today = rememberCleanToday(vm)
     val link = rememberLinkStatus(vm)
@@ -110,15 +111,12 @@ internal fun CleanHomeScreen(
         trailing = { LinkPill(link, fmt, onOpenDevices) },
     ) {
         DialsCard(today, fmt, onOpenRecovery, onOpenStrain, onOpenSleep, Modifier.cleanReveal(1))
+        NumbersGrid(vm, today, fmt, onOpenLive, Modifier.cleanReveal(2))
         VerdictCard(today, fmt, Modifier.cleanReveal(2), onClick = onOpenStrain)
         BriefingCard(today, fmt, onAsk, onOpenCoach, Modifier.cleanReveal(3))
         QuickTiles(stress, journal, fmt, onOpenStress, onOpenJournal, Modifier.cleanReveal(3))
         HealthGlanceCard(vm, today.days, fmt, onOpenHealth, Modifier.cleanReveal(3))
-        today.vitalsRow?.let { row ->
-            VitalsSection(row, today, fmt, Modifier.cleanReveal(4))
-        }
         LastNightCard(lastNight, fmt, onOpenSleep, Modifier.cleanReveal(5))
-        today.todayRow?.let { ActivityCard(it, fmt, Modifier.cleanReveal(6)) }
         HonestyNote(Modifier.cleanReveal(7))
     }
 }
@@ -511,84 +509,6 @@ private fun vitalBound(kind: VitalKind, v: Double, fmt: CleanFormat): String = w
     VitalKind.SPO2 -> fmt.decimal(v)
 }
 
-@Composable
-private fun VitalsSection(row: DailyMetric, today: CleanToday, fmt: CleanFormat, modifier: Modifier = Modifier) {
-    val vitals = remember(row, today) { vitalsFor(row, today) }
-    if (vitals.isEmpty()) return
-    val nightLabel = fmt.dayMonth(LocalDate.parse(row.day))
-    Column(modifier) {
-        SectionLabel(stringResource(R.string.clean_vitals), trailing = stringResource(R.string.clean_vitals_of_night, nightLabel))
-        Spacer(Modifier.height(6.dp))
-        GlassCard(padding = 16.dp) {
-            vitals.forEachIndexed { i, stat ->
-                VitalRow(stat, fmt)
-                if (i < vitals.lastIndex) {
-                    HorizontalDivider(color = CleanColors.hairline, modifier = Modifier.padding(vertical = 10.dp))
-                }
-            }
-            Spacer(Modifier.height(12.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Rounded.Info, null, tint = CleanColors.textTertiary, modifier = Modifier.size(14.dp))
-                Spacer(Modifier.width(6.dp))
-                Text(stringResource(R.string.clean_vitals_legend), style = CleanType.caption, color = CleanColors.textTertiary)
-            }
-        }
-    }
-}
-
-@Composable
-internal fun VitalRow(stat: VitalStat, fmt: CleanFormat) {
-    val tone = toneColor(stat.tone)
-    val name = vitalName(stat.kind)
-    val value = vitalValue(stat.kind, stat.value, fmt)
-    val delta = stat.delta
-    val low = stat.bandLow
-    val high = stat.bandHigh
-    val deltaText = when {
-        delta == null || low == null || high == null -> stringResource(R.string.clean_vital_learning)
-        stat.value in low..high -> stringResource(R.string.clean_vital_in_range)
-        delta > 0 -> stringResource(R.string.clean_vital_above, vitalDelta(stat.kind, delta, fmt))
-        else -> stringResource(R.string.clean_vital_below, vitalDelta(stat.kind, delta, fmt))
-    }
-    Column(Modifier.semantics(mergeDescendants = true) {}) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(
-                Modifier.size(32.dp).clip(CircleShape).background(tone.copy(alpha = 0.14f)),
-                contentAlignment = Alignment.Center,
-            ) {
-                Icon(vitalIcon(stat.kind), contentDescription = null, tint = tone, modifier = Modifier.size(17.dp))
-            }
-            Spacer(Modifier.width(12.dp))
-            Column(Modifier.weight(1f)) {
-                Text(name, style = CleanType.body, color = CleanColors.textPrimary, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                if (low != null && high != null) {
-                    Text(
-                        stringResource(R.string.clean_vital_normal_range, vitalBound(stat.kind, low, fmt), vitalBound(stat.kind, high, fmt)),
-                        style = CleanType.caption,
-                        color = CleanColors.textTertiary,
-                        maxLines = 1,
-                    )
-                }
-            }
-            Text(value, style = CleanType.number, color = CleanColors.textPrimary)
-        }
-        Spacer(Modifier.height(8.dp))
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 44.dp)) {
-            RangeBar(stat, tone, Modifier.weight(1f))
-            Spacer(Modifier.width(10.dp))
-            if (delta != null && low != null && high != null && stat.value !in low..high) {
-                Icon(
-                    if (delta > 0) Icons.Rounded.ArrowDropUp else Icons.Rounded.ArrowDropDown,
-                    contentDescription = null,
-                    tint = tone,
-                    modifier = Modifier.size(18.dp),
-                )
-            }
-            Text(deltaText, style = CleanType.caption, color = if (stat.tone == VitalTone.NORMAL) CleanColors.textSecondary else tone, maxLines = 1)
-        }
-    }
-}
-
 // MARK: Last night
 
 @Composable
@@ -654,43 +574,6 @@ internal fun stageName(stage: SleepStage): String = stringResource(
         SleepStage.DEEP -> R.string.clean_stage_deep
     },
 )
-
-// MARK: Activity
-
-@Composable
-private fun ActivityCard(row: DailyMetric, fmt: CleanFormat, modifier: Modifier = Modifier) {
-    val steps = row.steps
-    val kcal = row.activeKcalEst
-    val workouts = row.exerciseCount
-    if (steps == null && kcal == null && (workouts == null || workouts == 0)) return
-    Column(modifier) {
-        SectionLabel(stringResource(R.string.clean_activity_today))
-        Spacer(Modifier.height(6.dp))
-        GlassCard(padding = 16.dp) {
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                if (steps != null) {
-                    ActivityStat(Icons.AutoMirrored.Rounded.DirectionsRun, fmt.int(steps.toDouble()), stringResource(R.string.clean_steps))
-                }
-                if (kcal != null) {
-                    ActivityStat(Icons.Rounded.LocalFireDepartment, fmt.int(kcal), stringResource(R.string.clean_kcal))
-                }
-                ActivityStat(Icons.Rounded.FitnessCenter, (workouts ?: 0).toString(), stringResource(R.string.clean_workouts))
-            }
-            Spacer(Modifier.height(10.dp))
-            Text(stringResource(R.string.clean_activity_estimated), style = CleanType.caption, color = CleanColors.textTertiary)
-        }
-    }
-}
-
-@Composable
-private fun ActivityStat(icon: ImageVector, value: String, label: String) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Icon(icon, contentDescription = null, tint = CleanColors.strainBright, modifier = Modifier.size(20.dp))
-        Spacer(Modifier.height(4.dp))
-        Text(value, style = CleanType.number, color = CleanColors.textPrimary)
-        Text(label, style = CleanType.caption, color = CleanColors.textTertiary)
-    }
-}
 
 // MARK: Honesty note
 

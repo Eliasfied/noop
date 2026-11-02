@@ -557,4 +557,39 @@
     <string name="clean_coach_q_sleep">I slept %1$s last night with a sleep performance of %2$s. What helped or hurt, and what should I change tonight?</string>
     <string name="clean_coach_q_stress">My stress is %1$s of 3 today. What can I do about it?</string>
     <string name="clean_coach_q_health">My body age is %1$s at an actual age of %2$d. What would make the biggest difference?</string>
+    <!-- Number tiles -->
+    <string name="clean_numbers_title">Your numbers</string>
+    <string name="clean_tile_heart_rate">Heart rate</string>
+    <string name="clean_tile_live">live</string>
+    <string name="clean_tile_just_now">just now</string>
+    <string name="clean_tile_minutes_ago">%1$d min ago</string>
+    <string name="clean_tile_start_live">Tap for live heart rate</string>
+    <string name="clean_tile_learning">learning your normal</string>
+    <string name="clean_tile_normal">normal</string>
+    <string name="clean_tile_vs_normal">%1$s vs. normal</string>
+    <string name="clean_tile_today_estimated">today, estimated</string>
+
+    <!-- Coach chat -->
+    <string name="clean_coach_title">Coach</string>
+    <string name="clean_coach_settings">Coach settings</string>
+    <string name="clean_coach_setup_title">Your personal coach</string>
+    <string name="clean_coach_setup_privacy">Your key is stored encrypted on this phone. Nothing is sent until you set up a provider and ask a question.</string>
+    <string name="clean_coach_consent_off">Data sharing is off: the coach does not see your numbers. Tap to allow it in the settings.</string>
+    <string name="clean_coach_empty_title">What would you like to know?</string>
+    <string name="clean_coach_empty_body">Ask about your recovery, strain, sleep or habits. The coach answers from your own data.</string>
+    <string name="clean_coach_q_hrv">Why does my HRV go up and down so much?</string>
+    <string name="clean_coach_q_week">How did my last week go, and what should I focus on?</string>
+    <string name="clean_coach_follow_today">What does that mean for today?</string>
+    <string name="clean_coach_follow_simpler">Explain that more simply</string>
+    <string name="clean_coach_follow_tomorrow">What should I change tomorrow?</string>
+    <string name="clean_coach_copy">Copy</string>
+    <string name="clean_coach_save_journal">Save to logbook</string>
+    <string name="clean_coach_saved">Saved</string>
+    <string name="clean_coach_placeholder">Ask the coach…</string>
+    <string name="clean_coach_send">Send</string>
+    <string name="clean_coach_key_rejected">The provider rejected the key. Tap to update it.</string>
+    <string name="clean_coach_clear_title">Start a new conversation</string>
+    <string name="clean_coach_clear_body">This clears the current conversation on this phone.</string>
+    <string name="clean_coach_clear_confirm">Clear</string>
+    <string name="clean_cancel">Cancel</string>
 </resources>

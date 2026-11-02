@@ -113,6 +113,7 @@ object CleanRoutes {
     const val WORKOUTS = "clean_workouts"
     const val WORKOUT = "clean_workout"
     const val HEALTH = "clean_health"
+    const val COACH = "clean_coach"
 }
 
 /**
@@ -134,7 +135,7 @@ fun NavHostController.navigateCleanTab(route: String) {
 
 /** The clean screens, registered into the shell's NavHost next to the classic ones. */
 fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
-    val openCoach: () -> Unit = { nav.navigate(Destination.Coach.route) }
+    val openCoach: () -> Unit = { nav.navigate(CleanRoutes.COACH) }
     val ask: (String) -> Unit = { askCoach(it, openCoach) }
     composable(CleanRoutes.HOME) {
         CleanHomeScreen(
@@ -148,6 +149,7 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             onOpenHealth = { nav.navigate(CleanRoutes.HEALTH) },
             onAsk = ask,
             onOpenCoach = openCoach,
+            onOpenLive = { nav.navigate(Destination.Live.route) },
         )
     }
     composable(CleanRoutes.STRESS) {
@@ -156,6 +158,18 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             onBack = { nav.popBackStack() },
             onOpenBreathe = { nav.navigate(Destination.Breathe.route) },
             onAsk = ask,
+        )
+    }
+    composable(CleanRoutes.COACH) {
+        CleanCoachScreen(
+            appVm = vm,
+            onBack = { nav.popBackStack() },
+            onOpenSetup = { nav.navigate(Destination.Coach.route) },
+            onOpenSettings = {
+                // Coach settings resolve the classic Coach entry's view model, so it goes first.
+                nav.navigate(Destination.Coach.route)
+                nav.navigate(Destination.CoachSettings.route)
+            },
         )
     }
     composable(CleanRoutes.HEALTH) {
