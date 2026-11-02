@@ -188,7 +188,7 @@
     <string name="clean_part_efficiency">Efficiency (asleep ÷ in bed)</string>
     <string name="clean_part_restorative">Restorative sleep (deep + REM)</string>
     <string name="clean_part_regularity">Regularity</string>
-    <string name="clean_part_regularity_note">not measured yet, counts as neutral</string>
+    <string name="clean_part_regularity_note">not part of this score yet, counts as neutral</string>
     <string name="clean_part_points">%1$s of %2$s pts</string>
     <string name="clean_part_weight">Weight %1$s</string>
     <string name="clean_breakdown_footer">Duration is measured against a %1$s need; sleeping longer adds no extra points.</string>

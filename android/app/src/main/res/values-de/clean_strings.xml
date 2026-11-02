@@ -175,7 +175,7 @@
     <string name="clean_part_efficiency">Effizienz (Schlaf ÷ Bettzeit)</string>
     <string name="clean_part_restorative">Erholsamer Schlaf (Tief + REM)</string>
     <string name="clean_part_regularity">Regelmäßigkeit</string>
-    <string name="clean_part_regularity_note">wird noch nicht gemessen, zählt neutral</string>
+    <string name="clean_part_regularity_note">fließt noch nicht in diesen Wert ein, zählt neutral</string>
     <string name="clean_part_points">%1$s von %2$s Pkt.</string>
     <string name="clean_part_weight">Gewicht %1$s</string>
     <string name="clean_breakdown_footer">Die Dauer wird an einem Bedarf von %1$s gemessen; länger schlafen bringt keine Extrapunkte.</string>
