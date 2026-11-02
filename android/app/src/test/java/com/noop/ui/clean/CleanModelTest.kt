@@ -259,6 +259,17 @@ class CleanModelTest {
     }
 
     @Test
+    fun aClassicScreenKeepsTheTabItWasOpenedFromLit() {
+        // The graph entry at the bottom has no route.
+        assertEquals(1, cleanActiveTab(listOf(null, CleanRoutes.HOME, CleanRoutes.SLEEP, "sleep")))
+        assertEquals(3, cleanActiveTab(listOf(null, CleanRoutes.HOME, CleanRoutes.MORE, "settings", "devices")))
+        assertEquals(0, cleanActiveTab(listOf(null, CleanRoutes.HOME, CleanRoutes.STRAIN, "workouts")))
+        assertEquals(0, cleanActiveTab(listOf(null, CleanRoutes.HOME, "devices")))
+        assertEquals(2, cleanActiveTab(listOf(null, CleanRoutes.HOME, CleanRoutes.TRENDS)))
+        assertEquals(3, cleanActiveTab(listOf(null, "today")))
+    }
+
+    @Test
     fun niceTicksAreRoundAndCoverTheRange() {
         assertEquals(listOf(0.0, 20.0, 40.0, 60.0), niceTicks(60.0))
         val ticks = niceTicks(80.0, 30.0)

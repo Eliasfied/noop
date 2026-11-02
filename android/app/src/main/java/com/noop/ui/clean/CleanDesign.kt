@@ -36,6 +36,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -57,6 +58,7 @@ import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -106,14 +108,31 @@ object CleanRoutes {
     const val MORE = "clean_more"
 }
 
+/**
+ * Opens a clean tab on its ROOT page: pops back to it when the tab is already on the back stack (the user is
+ * inside that tab, possibly on a classic page pushed from it), otherwise starts it fresh above Home.
+ *
+ * Deliberately without saveState/restoreState. The classic tabs save and restore their stacks, but a clean
+ * tab's stack can hold a classic screen pushed from it (clean Sleep -> classic Sleep), and restoring that
+ * reopened the classic screen on every later tap of the tab, with no way back short of the back button.
+ */
+fun NavHostController.navigateCleanTab(route: String) {
+    if (currentDestination?.route == route) return
+    if (popBackStack(route, inclusive = false)) return
+    navigate(route) {
+        popUpTo(graph.findStartDestination().id)
+        launchSingleTop = true
+    }
+}
+
 /** The clean screens, registered into the shell's NavHost next to the classic ones. */
-fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel, onTopLevel: (String) -> Unit) {
+fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
     composable(CleanRoutes.HOME) {
         CleanHomeScreen(
             vm = vm,
             onOpenRecovery = { nav.navigate(CleanRoutes.RECOVERY) },
             onOpenStrain = { nav.navigate(CleanRoutes.STRAIN) },
-            onOpenSleep = { onTopLevel(CleanRoutes.SLEEP) },
+            onOpenSleep = { nav.navigateCleanTab(CleanRoutes.SLEEP) },
             onOpenDevices = { nav.navigate(Destination.Devices.route) },
         )
     }
@@ -141,7 +160,7 @@ private val cleanTabs = listOf(
     CleanTab(CleanRoutes.MORE, Icons.Rounded.GridView, R.string.clean_tab_more, CleanColors.textSecondary),
 )
 
-/** Which tab a route belongs to: detail pages light their parent, every classic screen lights More. */
+/** Which tab a clean route belongs to: detail pages light their parent; anything else lights More. */
 internal fun cleanTabIndex(route: String?): Int = when (route) {
     CleanRoutes.HOME, CleanRoutes.RECOVERY, CleanRoutes.STRAIN -> 0
     CleanRoutes.SLEEP -> 1
@@ -150,12 +169,24 @@ internal fun cleanTabIndex(route: String?): Int = when (route) {
 }
 
 /**
+ * The lit tab for a back stack (routes bottom to top): the tab of the nearest clean screen at or below the
+ * top. A classic screen pushed from a clean tab therefore keeps that tab lit (the classic Sleep screen
+ * opened from clean Sleep lights Sleep), instead of always reading as More.
+ */
+internal fun cleanActiveTab(stack: List<String?>): Int =
+    cleanTabIndex(stack.lastOrNull { it != null && it.startsWith(CLEAN_ROUTE_PREFIX) })
+
+private const val CLEAN_ROUTE_PREFIX = "clean_"
+
+/**
  * The clean design's floating tab bar: a glass capsule whose selection is a lens that glides between tabs
  * on a spring. Drawn by the shell in place of the classic bar, with the same insets and auto-hide.
  */
 @Composable
-fun CleanTabBar(currentRoute: String?, onSelect: (String) -> Unit, modifier: Modifier = Modifier) {
-    val selected = cleanTabIndex(currentRoute)
+fun CleanTabBar(nav: NavHostController, modifier: Modifier = Modifier) {
+    val stack by nav.currentBackStack.collectAsState()
+    val selected = cleanActiveTab(stack.map { it.destination.route })
+    val onSelect: (String) -> Unit = { nav.navigateCleanTab(it) }
     val tick = rememberTick()
     val shape = RoundedCornerShape(CleanDims.pillRadius)
     Box(

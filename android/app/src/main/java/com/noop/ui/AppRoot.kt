@@ -590,7 +590,7 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
                 // DEFAULT path: the shipped reserved slot, unchanged. Empty only when the overlay is
                 // on, where the bar is drawn below as a sibling and the slot must reserve nothing.
                 if (!BottomBarStyleStore.overlay) {
-                    if (clean) CleanTabBar(currentRoute, { if (it != currentRoute) nav.navigateTopLevel(it) }) else GlassBottomBar(
+                    if (clean) CleanTabBar(nav) else GlassBottomBar(
                         current = current,
                         onTabSelected = { dest ->
                             if (dest.route != currentRoute) nav.navigateTopLevel(dest.route)
@@ -633,7 +633,7 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
                 popEnterTransition = { fadeIn(navFadeSpec) },
                 popExitTransition = { fadeOut(navFadeSpec) },
             ) {
-                cleanGraph(nav, viewModel) { nav.navigateTopLevel(it) }
+                cleanGraph(nav, viewModel)
                 // --- Live, working screens (existing waves) ---
                 composable(Destination.Today.route) {
                     TodayScreen(
@@ -962,7 +962,7 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
                 }
         if (BottomBarStyleStore.overlay && barPresent) {
             if (clean) {
-                CleanTabBar(currentRoute, { if (it != currentRoute) nav.navigateTopLevel(it) }, overlayBarModifier)
+                CleanTabBar(nav, overlayBarModifier)
             } else {
                 GlassBottomBar(
                     current = current,
