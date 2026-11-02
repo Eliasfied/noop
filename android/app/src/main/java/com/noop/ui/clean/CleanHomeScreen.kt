@@ -93,7 +93,7 @@ internal fun CleanHomeScreen(
     onOpenHealth: () -> Unit,
     onAsk: (String) -> Unit,
     onOpenCoach: () -> Unit,
-    onOpenLive: () -> Unit,
+    onOpenMetric: (CleanMetric) -> Unit,
 ) {
     val today = rememberCleanToday(vm)
     val link = rememberLinkStatus(vm)
@@ -111,7 +111,7 @@ internal fun CleanHomeScreen(
         trailing = { LinkPill(link, fmt, onOpenDevices) },
     ) {
         DialsCard(today, fmt, onOpenRecovery, onOpenStrain, onOpenSleep, Modifier.cleanReveal(1))
-        NumbersGrid(vm, today, fmt, onOpenLive, Modifier.cleanReveal(2))
+        NumbersGrid(vm, today, fmt, onOpenMetric, Modifier.cleanReveal(2))
         VerdictCard(today, fmt, Modifier.cleanReveal(2), onClick = onOpenStrain)
         BriefingCard(today, fmt, onAsk, onOpenCoach, Modifier.cleanReveal(3))
         QuickTiles(stress, journal, fmt, onOpenStress, onOpenJournal, Modifier.cleanReveal(3))

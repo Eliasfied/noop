@@ -333,7 +333,12 @@ private fun HrrCard(hrr: HeartRateRecovery.Result, fmt: CleanFormat, modifier: M
  * reads as a zone. Touching it reports the moment and the heart rate.
  */
 @Composable
-private fun WorkoutHrChart(buckets: List<HrBucket>, zoneSet: HrZoneSet, fmt: CleanFormat) {
+internal fun WorkoutHrChart(
+    buckets: List<HrBucket>,
+    zoneSet: HrZoneSet,
+    fmt: CleanFormat,
+    description: String = stringResource(R.string.clean_workout_hr_title),
+) {
     val measurer = rememberTextMeasurer(cacheSize = 16)
     val tick = rememberTick()
     var selected by remember(buckets) { mutableStateOf<Int?>(null) }
@@ -349,7 +354,6 @@ private fun WorkoutHrChart(buckets: List<HrBucket>, zoneSet: HrZoneSet, fmt: Cle
         color = pick?.let { zoneColor(max(1, zoneSet.zoneNumber(it.avgBpm))) } ?: CleanColors.textTertiary,
     )
     Spacer(Modifier.height(8.dp))
-    val description = stringResource(R.string.clean_workout_hr_title)
     Canvas(
         Modifier
             .fillMaxWidth()

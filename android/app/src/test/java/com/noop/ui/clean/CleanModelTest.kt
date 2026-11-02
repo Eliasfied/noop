@@ -247,6 +247,18 @@ class CleanModelTest {
     }
 
     @Test
+    fun everyVitalTileOpensItsOwnMetric() {
+        VitalKind.entries.filter { it != VitalKind.SLEEP_DURATION }.forEach { kind ->
+            assertEquals(kind, kind.metric()!!.vitalKind())
+        }
+        val r = row("2026-11-02") { copy(restingHr = 51, skinTempDevC = 33.4, steps = 7_000) }
+        assertEquals(51.0, CleanMetric.HEART.pick(r)!!, 0.0)
+        // An absolute wrist temperature is not a deviation and stays out of the history.
+        assertNull(CleanMetric.SKIN_TEMP.pick(r))
+        assertEquals(7_000.0, CleanMetric.STEPS.pick(r)!!, 0.0)
+    }
+
+    @Test
     fun unscoredTodayShowsLastMeasuredNightsVitals() {
         val days = listOf(
             row("2026-10-31") { copy(avgHrv = 61.0, restingHr = 52) },

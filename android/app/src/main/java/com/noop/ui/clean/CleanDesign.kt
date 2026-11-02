@@ -114,6 +114,7 @@ object CleanRoutes {
     const val WORKOUT = "clean_workout"
     const val HEALTH = "clean_health"
     const val COACH = "clean_coach"
+    const val METRIC = "clean_metric"
 }
 
 /**
@@ -149,6 +150,19 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             onOpenHealth = { nav.navigate(CleanRoutes.HEALTH) },
             onAsk = ask,
             onOpenCoach = openCoach,
+            onOpenMetric = { nav.navigate("${CleanRoutes.METRIC}/${it.name}") },
+        )
+    }
+    composable(
+        "${CleanRoutes.METRIC}/{metric}",
+        arguments = listOf(navArgument("metric") { type = NavType.StringType }),
+    ) { entry ->
+        val metric = entry.arguments?.getString("metric")
+            ?.let { name -> CleanMetric.entries.firstOrNull { it.name == name } } ?: CleanMetric.HEART
+        CleanMetricScreen(
+            vm = vm,
+            metric = metric,
+            onBack = { nav.popBackStack() },
             onOpenLive = { nav.navigate(Destination.Live.route) },
         )
     }

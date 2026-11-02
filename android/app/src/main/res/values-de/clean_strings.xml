@@ -577,4 +577,23 @@
     <string name="clean_coach_clear_body">Das löscht das aktuelle Gespräch auf diesem Handy.</string>
     <string name="clean_coach_clear_confirm">Löschen</string>
     <string name="clean_cancel">Abbrechen</string>
+    <!-- Metric detail -->
+    <string name="clean_metric_heart_today">Puls heute</string>
+    <string name="clean_metric_heart_today_explain">Dein Puls seit Mitternacht, über je fünf Minuten gemittelt. Die farbigen Flächen sind deine Pulszonen. Tippe auf die Kurve, um einen Zeitpunkt abzulesen.</string>
+    <string name="clean_metric_heart_empty">Heute ist noch kein Puls gespeichert. Er erscheint, sobald das Band synchronisiert hat.</string>
+    <string name="clean_metric_low">Tiefster</string>
+    <string name="clean_metric_avg">Schnitt</string>
+    <string name="clean_metric_high">Höchster</string>
+    <string name="clean_metric_open_live">Live-Puls</string>
+    <string name="clean_metric_open_live_body">Deinen Puls Schlag für Schlag verfolgen</string>
+    <string name="clean_metric_rhr_history">Ruhepuls pro Nacht</string>
+    <string name="clean_metric_rhr_explain">Dein Ruhepuls im Schlaf. Liegt er über deinem Normalbereich, ist der Körper oft noch belastet (Training, Alkohol, Infekt).</string>
+    <string name="clean_metric_hrv_explain">Herzfrequenzvariabilität, im Schlaf gemessen. Über deinem Normalbereich heißt meist: gut erholt. Darunter arbeitet der Körper noch an etwas.</string>
+    <string name="clean_metric_resp_explain">Atemzüge pro Minute im Schlaf. Der Wert ist sehr stabil, ein deutlicher Anstieg kann ein frühes Zeichen für einen Infekt sein.</string>
+    <string name="clean_metric_skin_explain">Wie weit deine Hauttemperatur in der Nacht von deinem eigenen Normalwert (0) abwich. Ein Anstieg um mehrere Zehntel kann auf einen Infekt oder deinen Zyklus hindeuten.</string>
+    <string name="clean_metric_spo2_explain" formatted="false">Sauerstoffsättigung im Blut während des Schlafs. Normal sind etwa 95–100 %.</string>
+    <string name="clean_metric_steps_explain">Schritte pro Tag, geschätzt aus den Bewegungsdaten des Bands.</string>
+    <string name="clean_metric_kcal_explain">Aktive Kalorien pro Tag, geschätzt aus Puls und Bewegung.</string>
+    <string name="clean_metric_legend_night">Eine Nacht</string>
+    <string name="clean_metric_nightly_note">Dieser Wert wird einmal pro Nacht berechnet, deshalb gibt es einen Punkt pro Tag. Tippe oder wische über das Diagramm, um eine Nacht abzulesen.</string>
 </resources>

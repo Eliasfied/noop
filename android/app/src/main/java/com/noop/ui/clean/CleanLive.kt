@@ -53,7 +53,7 @@ import java.time.LocalDate
 //
 // The day's numbers as a grid of tiles: heart rate now, then last night's HRV, resting HR, breathing,
 // skin temperature and SpO2 (each with its distance from the wearer's normal and the normal range as a
-// small bar), then today's steps and calories. The vitals come from the same resolution as the recovery
+// small bar), then today's steps and calories. Each tile opens its history (CleanMetricScreen). The vitals come from the same resolution as the recovery
 // dial (vitalsFor), so a tile and the recovery page always describe the same night.
 
 /** Heart rate as the Home tile shows it: live when the strap is streaming, else the last banked sample. */
@@ -167,7 +167,7 @@ private fun NumberTile(
 }
 
 /** The short value of a vital (without the unit) and its unit, for a tile. */
-private fun vitalNumber(kind: VitalKind, value: Double, fmt: CleanFormat): Pair<String, String?> = when (kind) {
+internal fun vitalNumber(kind: VitalKind, value: Double, fmt: CleanFormat): Pair<String, String?> = when (kind) {
     VitalKind.HRV -> fmt.int(value) to fmt.string(R.string.clean_unit_ms)
     VitalKind.RESTING_HR -> fmt.int(value) to fmt.string(R.string.clean_unit_bpm)
     VitalKind.RESPIRATION -> fmt.decimal(value) to fmt.string(R.string.clean_unit_rpm)
@@ -177,7 +177,7 @@ private fun vitalNumber(kind: VitalKind, value: Double, fmt: CleanFormat): Pair<
 }
 
 @Composable
-private fun VitalTile(stat: VitalStat, fmt: CleanFormat, modifier: Modifier = Modifier) {
+internal fun VitalTile(stat: VitalStat, fmt: CleanFormat, modifier: Modifier = Modifier, onClick: (() -> Unit)? = null) {
     val (value, unit) = vitalNumber(stat.kind, stat.value, fmt)
     val tone = toneColor(stat.tone)
     val delta = stat.delta
@@ -200,6 +200,7 @@ private fun VitalTile(stat: VitalStat, fmt: CleanFormat, modifier: Modifier = Mo
         range = if (low != null && high != null) {
             { RangeBar(stat, tone, Modifier.fillMaxWidth()) }
         } else null,
+        onClick = onClick,
     )
 }
 
@@ -212,7 +213,7 @@ internal fun NumbersGrid(
     vm: AppViewModel,
     today: CleanToday,
     fmt: CleanFormat,
-    onOpenLive: () -> Unit,
+    onOpenMetric: (CleanMetric) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val heart = rememberHeartNow(vm)
@@ -236,7 +237,7 @@ internal fun NumbersGrid(
                 captionColor = if (heart.live) CleanColors.recoveryLow else CleanColors.textSecondary,
                 modifier = m,
                 icon = { BeatingHeart(heart.bpm, heart.live) },
-                onClick = onOpenLive,
+                onClick = { onOpenMetric(CleanMetric.HEART) },
             )
         }
         // The core vitals always get a tile, "–" until a night has measured them; SpO2 only when present.
@@ -244,7 +245,7 @@ internal fun NumbersGrid(
         listOf(VitalKind.HRV, VitalKind.RESTING_HR, VitalKind.RESPIRATION, VitalKind.SKIN_TEMP, VitalKind.SPO2).forEach { kind ->
             val stat = shown[kind]
             when {
-                stat != null -> add { m -> VitalTile(stat, fmt, m) }
+                stat != null -> add { m -> VitalTile(stat, fmt, m) { kind.metric()?.let(onOpenMetric) } }
                 kind != VitalKind.SPO2 -> add { m ->
                     NumberTile(
                         label = vitalName(kind),
@@ -253,6 +254,7 @@ internal fun NumbersGrid(
                         caption = stringResource(R.string.clean_tile_no_value),
                         captionColor = CleanColors.textTertiary,
                         modifier = m,
+                        onClick = { kind.metric()?.let(onOpenMetric) },
                     )
                 }
             }
@@ -267,6 +269,7 @@ internal fun NumbersGrid(
                     captionColor = CleanColors.textSecondary,
                     modifier = m,
                     icon = { Icon(Icons.AutoMirrored.Rounded.DirectionsRun, null, tint = CleanColors.strainBright, modifier = Modifier.size(16.dp)) },
+                    onClick = { onOpenMetric(CleanMetric.STEPS) },
                 )
             }
         }
@@ -280,6 +283,7 @@ internal fun NumbersGrid(
                     captionColor = CleanColors.textSecondary,
                     modifier = m,
                     icon = { Icon(Icons.Rounded.LocalFireDepartment, null, tint = CleanColors.watch, modifier = Modifier.size(16.dp)) },
+                    onClick = { onOpenMetric(CleanMetric.KCAL) },
                 )
             }
         }

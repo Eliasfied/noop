@@ -593,4 +593,23 @@
     <string name="clean_coach_clear_body">This clears the current conversation on this phone.</string>
     <string name="clean_coach_clear_confirm">Clear</string>
     <string name="clean_cancel">Cancel</string>
+    <!-- Metric detail -->
+    <string name="clean_metric_heart_today">Heart rate today</string>
+    <string name="clean_metric_heart_today_explain">Your heart rate since midnight, averaged over five minutes. The coloured bands are your heart-rate zones. Touch the curve to read a moment.</string>
+    <string name="clean_metric_heart_empty">No heart rate has been stored today yet. It appears after the strap has synced.</string>
+    <string name="clean_metric_low">Lowest</string>
+    <string name="clean_metric_avg">Average</string>
+    <string name="clean_metric_high">Highest</string>
+    <string name="clean_metric_open_live">Live heart rate</string>
+    <string name="clean_metric_open_live_body">Watch your heart rate beat by beat</string>
+    <string name="clean_metric_rhr_history">Resting heart rate per night</string>
+    <string name="clean_metric_rhr_explain">Your resting heart rate during sleep. Above your normal range, the body is often still under load (training, alcohol, an infection).</string>
+    <string name="clean_metric_hrv_explain">Heart-rate variability, measured during sleep. Above your normal range usually means well recovered, below it means the body is still working on something.</string>
+    <string name="clean_metric_resp_explain">Breaths per minute during sleep. It stays very stable; a clear rise can be an early sign of an infection.</string>
+    <string name="clean_metric_skin_explain">How far your skin temperature at night was from your own normal (0). A rise of several tenths can point to an infection or your cycle.</string>
+    <string name="clean_metric_spo2_explain" formatted="false">Blood oxygen saturation during sleep. Around 95–100 % is normal.</string>
+    <string name="clean_metric_steps_explain">Steps per day, estimated from the strap\'s motion data.</string>
+    <string name="clean_metric_kcal_explain">Active calories per day, estimated from heart rate and movement.</string>
+    <string name="clean_metric_legend_night">One night</string>
+    <string name="clean_metric_nightly_note">This value is worked out once per night, so there is one point per day. Touch or drag across the chart to read a night.</string>
 </resources>
