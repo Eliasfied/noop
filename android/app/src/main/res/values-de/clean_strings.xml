@@ -392,4 +392,67 @@
         <item>Geraucht</item>
         <item>Cannabis</item>
     </string-array>
+    <!-- Zones and workouts -->
+    <string name="clean_zones_today_title">Zeit in Pulszonen</string>
+    <string name="clean_zones_today_explain">Heute seit Mitternacht, in denselben Zonen wie bei Live-Puls und Workouts.</string>
+    <string name="clean_zones_none">Keine Pulsdaten in diesem Zeitraum.</string>
+    <string name="clean_zones_low">Zonen 1–3 · locker bis mittel</string>
+    <string name="clean_zones_high">Zonen 4–5 · intensiv</string>
+    <string name="clean_zone_n">Zone %1$d</string>
+    <string name="clean_zone_range">%1$d–%2$d bpm · %3$d–%4$d %%</string>
+    <string name="clean_zones_basis">Zonen aus deinem Maximalpuls von %1$d bpm (änderbar in den Einstellungen).</string>
+    <string name="clean_zones_workout_title">Zeit in Pulszonen</string>
+    <string name="clean_zones_workout_explain">Wie lange du in diesem Training in jeder Zone warst.</string>
+    <string name="clean_workouts_subtitle">Letzte 90 Tage</string>
+    <string name="clean_workouts_empty">Keine Workouts in den letzten 90 Tagen.</string>
+    <string name="clean_week_this">Diese Woche</string>
+    <string name="clean_week_last">Letzte Woche</string>
+    <plurals name="clean_workouts_count">
+        <item quantity="one">%d Workout</item>
+        <item quantity="other">%d Workouts</item>
+    </plurals>
+    <string name="clean_workouts_classic_title">Hinzufügen, bearbeiten, live aufzeichnen</string>
+    <string name="clean_workouts_classic_body">Manuelle Workouts, Sportart ändern und Live-Tracking findest du in der klassischen Ansicht.</string>
+    <string name="clean_workouts_week_title">Letzte 7 Tage</string>
+    <string name="clean_workouts_time">Trainingszeit</string>
+    <string name="clean_workouts_avg_strain">Ø Belastung</string>
+    <string name="clean_workout_hr_title">Pulsverlauf</string>
+    <string name="clean_workout_hr_explain">Dein Puls im Verlauf des Trainings; die farbigen Bänder sind deine Zonen.</string>
+    <string name="clean_chart_touch_hint">Tippe auf das Diagramm</string>
+    <string name="clean_workout_notes">Notizen</string>
+    <string name="clean_workout_classic_title">In der klassischen Ansicht bearbeiten</string>
+    <string name="clean_workout_classic_body">Sportart oder Zeit ändern oder dieses Workout löschen.</string>
+    <string name="clean_stat_duration">Dauer</string>
+    <string name="clean_stat_avg_hr">Ø Puls</string>
+    <string name="clean_stat_max_hr">Max. Puls</string>
+    <string name="clean_stat_distance">Distanz</string>
+    <string name="clean_hrr_title">Puls-Erholung</string>
+    <string name="clean_hrr_explain">Wie schnell dein Puls nach dem Training gefallen ist, ausgehend von %1$d bpm am Ende. Ein schnellerer Abfall spricht meist für bessere Fitness.</string>
+    <string name="clean_hrr_after">nach %1$d Min.</string>
+    <string name="clean_sport_running">Laufen</string>
+    <string name="clean_sport_treadmill_run">Laufband</string>
+    <string name="clean_sport_walking">Gehen</string>
+    <string name="clean_sport_treadmill_walk">Gehen auf dem Laufband</string>
+    <string name="clean_sport_hiking">Wandern</string>
+    <string name="clean_sport_cycling">Radfahren</string>
+    <string name="clean_sport_indoor_cycle">Indoor-Radfahren</string>
+    <string name="clean_sport_swimming">Schwimmen</string>
+    <string name="clean_sport_open_water">Freiwasserschwimmen</string>
+    <string name="clean_sport_rowing">Rudern</string>
+    <string name="clean_sport_elliptical">Crosstrainer</string>
+    <string name="clean_sport_strength">Krafttraining</string>
+    <string name="clean_sport_functional">Funktionelles Training</string>
+    <string name="clean_sport_hiit">HIIT</string>
+    <string name="clean_sport_yoga">Yoga</string>
+    <string name="clean_sport_pilates">Pilates</string>
+    <string name="clean_sport_boxing">Boxen</string>
+    <string name="clean_sport_soccer">Fußball</string>
+    <string name="clean_sport_tennis">Tennis</string>
+    <string name="clean_sport_padel">Padel</string>
+    <string name="clean_sport_climbing">Klettern</string>
+    <string name="clean_sport_stretching">Dehnen</string>
+    <string name="clean_sport_skiing">Skifahren</string>
+    <string name="clean_sport_dancing">Tanzen</string>
+    <string name="clean_sport_martial_arts">Kampfsport</string>
+    <string name="clean_sport_other">Sonstiges</string>
 </resources>

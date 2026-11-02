@@ -75,6 +75,13 @@ internal object CleanColors {
     val stageLight = Color(0xFF59A8FF)
     val stageDeep = Color(0xFF3949D6)
 
+    // Heart-rate zones 1..5, cool to hot.
+    val zone1 = Color(0xFF7FB8FF)
+    val zone2 = Color(0xFF2EE58A)
+    val zone3 = Color(0xFFFFD54A)
+    val zone4 = Color(0xFFFF9F43)
+    val zone5 = Color(0xFFFF5A5F)
+
     // Verdict tones shared by vitals and drivers.
     val good = Color(0xFF2EE58A)
     val watch = Color(0xFFFFB547)

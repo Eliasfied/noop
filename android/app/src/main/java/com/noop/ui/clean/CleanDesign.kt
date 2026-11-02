@@ -61,6 +61,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import androidx.navigation.compose.composable
 import com.noop.R
 import com.noop.ui.AppViewModel
@@ -108,6 +110,8 @@ object CleanRoutes {
     const val MORE = "clean_more"
     const val STRESS = "clean_stress"
     const val JOURNAL = "clean_journal"
+    const val WORKOUTS = "clean_workouts"
+    const val WORKOUT = "clean_workout"
 }
 
 /**
@@ -159,7 +163,31 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
         CleanStrainScreen(
             vm = vm,
             onBack = { nav.popBackStack() },
-            onOpenWorkouts = { nav.navigate(Destination.Workouts.route) },
+            onOpenWorkouts = { nav.navigate(CleanRoutes.WORKOUTS) },
+            onOpenWorkout = { nav.openCleanWorkout(it) },
+        )
+    }
+    composable(CleanRoutes.WORKOUTS) {
+        CleanWorkoutsScreen(
+            vm = vm,
+            onBack = { nav.popBackStack() },
+            onOpenWorkout = { nav.openCleanWorkout(it) },
+            onOpenClassic = { nav.navigate(Destination.Workouts.route) },
+        )
+    }
+    composable(
+        "${CleanRoutes.WORKOUT}/{device}/{start}",
+        arguments = listOf(
+            navArgument("device") { type = NavType.StringType },
+            navArgument("start") { type = NavType.LongType },
+        ),
+    ) { entry ->
+        CleanWorkoutScreen(
+            vm = vm,
+            deviceId = entry.arguments?.getString("device").orEmpty(),
+            startTs = entry.arguments?.getLong("start") ?: 0L,
+            onBack = { nav.popBackStack() },
+            onOpenClassic = { nav.navigate(Destination.Workouts.route) },
         )
     }
     composable(CleanRoutes.SLEEP) {

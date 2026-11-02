@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.EditNote
+import androidx.compose.material.icons.rounded.FitnessCenter
 import androidx.compose.material.icons.rounded.Palette
 import androidx.compose.material.icons.rounded.Spa
 import androidx.compose.material.icons.rounded.Sync
@@ -174,6 +175,7 @@ private data class CleanPage(val route: String, val icon: androidx.compose.ui.gr
 private val cleanPages = listOf(
     CleanPage(CleanRoutes.STRESS, Icons.Rounded.Spa, R.string.clean_stress_title, CleanColors.trend),
     CleanPage(CleanRoutes.JOURNAL, Icons.Rounded.EditNote, R.string.clean_journal_title, CleanColors.sleep),
+    CleanPage(CleanRoutes.WORKOUTS, Icons.Rounded.FitnessCenter, R.string.clean_workouts, CleanColors.strain),
 )
 
 @Composable

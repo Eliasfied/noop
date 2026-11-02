@@ -1,6 +1,7 @@
 package com.noop.ui.clean
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -37,7 +40,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.noop.R
 import com.noop.data.WorkoutRow
 import com.noop.ui.AppViewModel
-import com.noop.ui.WorkoutEditing
 import com.noop.ui.localDayString
 import java.time.LocalDate
 
@@ -57,15 +59,22 @@ internal fun strainLevelName(level: StrainLevel): String = stringResource(
 )
 
 @Composable
-internal fun CleanStrainScreen(vm: AppViewModel, onBack: () -> Unit, onOpenWorkouts: () -> Unit) {
+internal fun CleanStrainScreen(
+    vm: AppViewModel,
+    onBack: () -> Unit,
+    onOpenWorkouts: () -> Unit,
+    onOpenWorkout: (WorkoutRow) -> Unit,
+) {
     val today = rememberCleanToday(vm)
     val fmt = rememberCleanFormat()
     val workouts by vm.workouts.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) { vm.loadWorkouts() }
     var range by rememberSaveable { mutableStateOf(HistoryRange.WEEK) }
     val end = LocalDate.parse(today.todayKey)
     val todays = remember(workouts, today.todayKey) {
         workouts.filter { localDayString(it.startTs) == today.todayKey }.sortedBy { it.startTs }
     }
+    val zones = rememberDayZones(vm, today.todayKey)
 
     CleanScreen(
         title = stringResource(R.string.clean_strain),
@@ -75,7 +84,14 @@ internal fun CleanStrainScreen(vm: AppViewModel, onBack: () -> Unit, onOpenWorko
     ) {
         StrainHero(today, fmt, Modifier.cleanReveal(1))
         TargetCard(today, fmt, Modifier.cleanReveal(2))
-        WorkoutsCard(todays, today, fmt, onOpenWorkouts, Modifier.cleanReveal(3))
+        ZonesCard(
+            title = stringResource(R.string.clean_zones_today_title),
+            explanation = stringResource(R.string.clean_zones_today_explain),
+            split = zones,
+            fmt = fmt,
+            modifier = Modifier.cleanReveal(3),
+        )
+        WorkoutsCard(todays, today, fmt, onOpenWorkouts, onOpenWorkout, Modifier.cleanReveal(3))
         HistoryBarsCard(
             title = stringResource(R.string.clean_history),
             explanation = stringResource(R.string.clean_strain_chart_explain),
@@ -196,10 +212,14 @@ private fun WorkoutsCard(
     today: CleanToday,
     fmt: CleanFormat,
     onOpenWorkouts: () -> Unit,
+    onOpenWorkout: (WorkoutRow) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    GlassCard(modifier, onClick = onOpenWorkouts) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+    GlassCard(modifier) {
+        Row(
+            Modifier.fillMaxWidth().clickable(role = Role.Button, onClick = onOpenWorkouts),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             Text(stringResource(R.string.clean_workouts_today), style = CleanType.headline, color = CleanColors.textPrimary, modifier = Modifier.weight(1f))
             Text(stringResource(R.string.clean_workouts_open), style = CleanType.caption, color = CleanColors.strainBright)
             Icon(Icons.Rounded.ChevronRight, null, tint = CleanColors.strainBright, modifier = Modifier.size(18.dp))
@@ -209,7 +229,7 @@ private fun WorkoutsCard(
             Text(stringResource(R.string.clean_workouts_none), style = CleanType.callout, color = CleanColors.textTertiary)
         } else {
             workouts.forEachIndexed { i, w ->
-                WorkoutLine(w, fmt)
+                WorkoutLine(w, fmt, showDate = false, onClick = { onOpenWorkout(w) })
                 if (i < workouts.lastIndex) HorizontalDivider(color = CleanColors.hairline, modifier = Modifier.padding(vertical = 8.dp))
             }
         }
@@ -228,11 +248,18 @@ private fun WorkoutsCard(
     }
 }
 
+/** A workout's duration in minutes: the recorded duration, else the session window. */
+internal fun workoutMinutes(w: WorkoutRow): Double = (w.durationS ?: (w.endTs - w.startTs).toDouble()) / 60.0
+
+/** One workout as a row: sport, start (and date), duration, and its strain on the 0-21 axis. */
 @Composable
-private fun WorkoutLine(w: WorkoutRow, fmt: CleanFormat) {
+internal fun WorkoutLine(w: WorkoutRow, fmt: CleanFormat, showDate: Boolean, onClick: (() -> Unit)? = null) {
     val strain = w.strain?.let { round1(strainOn21(it)) }
-    val minutes = (w.durationS ?: (w.endTs - w.startTs).toDouble()) / 60.0
-    Row(verticalAlignment = Alignment.CenterVertically) {
+    val minutes = workoutMinutes(w)
+    Row(
+        modifier = if (onClick != null) Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).clickable(role = Role.Button, onClick = onClick) else Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
         Box(
             Modifier.size(34.dp).clip(CircleShape).background(CleanColors.strain.copy(alpha = 0.16f)),
             contentAlignment = Alignment.Center,
@@ -248,8 +275,10 @@ private fun WorkoutLine(w: WorkoutRow, fmt: CleanFormat) {
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
+            val start = java.time.Instant.ofEpochSecond(w.startTs).atZone(java.time.ZoneId.systemDefault()).toLocalDate()
             Text(
-                "${fmt.time(w.startTs)} · ${fmt.duration(minutes)}",
+                (if (showDate) "${fmt.relativeDay(start)}, " else "") + "${fmt.time(w.startTs)} · ${fmt.duration(minutes)}" +
+                    (w.avgHr?.let { " · " + fmt.string(R.string.clean_value_bpm, it.toString()) } ?: ""),
                 style = CleanType.caption,
                 color = CleanColors.textTertiary,
             )
@@ -266,11 +295,6 @@ private fun WorkoutLine(w: WorkoutRow, fmt: CleanFormat) {
         }
     }
 }
-
-/** A workout's sport as a readable label; detected bouts read as a generic activity. */
-@Composable
-private fun sportLabel(sport: String): String =
-    if (sport == "detected") stringResource(R.string.clean_activity_generic) else WorkoutEditing.displaySport(sport)
 
 /** The tone of a strain value: the level colour. */
 internal fun strainColor(strain21: Double): Color = strainLevelColor(strainLevel(strain21))
