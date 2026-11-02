@@ -37,6 +37,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -86,6 +88,8 @@ internal fun CleanHomeScreen(
     onOpenStrain: () -> Unit,
     onOpenSleep: () -> Unit,
     onOpenDevices: () -> Unit,
+    onOpenStress: () -> Unit,
+    onOpenJournal: () -> Unit,
 ) {
     val today = rememberCleanToday(vm)
     val link = rememberLinkStatus(vm)
@@ -93,6 +97,8 @@ internal fun CleanHomeScreen(
     val nights = rememberCleanNights(vm, today.days)
     val lastNight = remember(nights) { nights?.night(0) }
     val recoveryValue = today.recoveryValue
+    val stress = rememberStressRead(vm, today.days)
+    val journal = rememberJournalToday(vm)
 
     CleanScreen(
         title = stringResource(R.string.clean_home_title),
@@ -102,12 +108,87 @@ internal fun CleanHomeScreen(
     ) {
         DialsCard(today, fmt, onOpenRecovery, onOpenStrain, onOpenSleep, Modifier.cleanReveal(1))
         VerdictCard(today, fmt, Modifier.cleanReveal(2), onClick = onOpenStrain)
+        QuickTiles(stress, journal, fmt, onOpenStress, onOpenJournal, Modifier.cleanReveal(3))
         today.vitalsRow?.let { row ->
-            VitalsSection(row, today, fmt, Modifier.cleanReveal(3))
+            VitalsSection(row, today, fmt, Modifier.cleanReveal(4))
         }
-        LastNightCard(lastNight, fmt, onOpenSleep, Modifier.cleanReveal(4))
-        today.todayRow?.let { ActivityCard(it, fmt, Modifier.cleanReveal(5)) }
-        HonestyNote(Modifier.cleanReveal(6))
+        LastNightCard(lastNight, fmt, onOpenSleep, Modifier.cleanReveal(5))
+        today.todayRow?.let { ActivityCard(it, fmt, Modifier.cleanReveal(6)) }
+        HonestyNote(Modifier.cleanReveal(7))
+    }
+}
+
+/** How much of today's logbook is filled in: answered items out of the visible catalogue. */
+internal data class JournalToday(val answered: Int, val total: Int)
+
+@Composable
+internal fun rememberJournalToday(vm: AppViewModel): JournalToday? {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    var state by remember { androidx.compose.runtime.mutableStateOf<JournalToday?>(null) }
+    androidx.compose.runtime.LaunchedEffect(Unit) {
+        state = runCatching {
+            val key = com.noop.ui.journalDayKey(0L)
+            val imported = vm.repo.journal("my-whoop", "0000-01-01", "9999-12-31").map { it.question }.distinct()
+            val items = com.noop.ui.resolveJournalItems(imported, com.noop.ui.loadJournalCatalogItems(context))
+            val answered = vm.repo.journal(com.noop.ui.JOURNAL_DEVICE_ID, key, key).map { it.question }.toSet()
+            JournalToday(items.count { it.canonical in answered }, items.size)
+        }.getOrNull()
+    }
+    return state
+}
+
+@Composable
+private fun QuickTiles(
+    stress: StressRead,
+    journal: JournalToday?,
+    fmt: CleanFormat,
+    onOpenStress: () -> Unit,
+    onOpenJournal: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(CleanDims.rowGap)) {
+        val score = stress.model?.score
+        GlassCard(Modifier.weight(1f), tint = score?.let(::stressColor), padding = 16.dp, onClick = onOpenStress) {
+            Text(stringResource(R.string.clean_stress_title).uppercase(), style = CleanType.label, color = CleanColors.textTertiary)
+            Spacer(Modifier.height(6.dp))
+            Row(verticalAlignment = Alignment.Bottom) {
+                Text(score?.let { fmt.decimal(it) } ?: "–", style = CleanType.bigNumber, color = CleanColors.textPrimary)
+                Text(
+                    " / 3",
+                    style = CleanType.unit,
+                    color = CleanColors.textSecondary,
+                    modifier = Modifier.padding(bottom = 6.dp),
+                )
+            }
+            Text(
+                score?.let { stressBandName(it) } ?: stringResource(R.string.clean_dial_no_data),
+                style = CleanType.caption,
+                color = score?.let(::stressColor) ?: CleanColors.textTertiary,
+            )
+        }
+        GlassCard(Modifier.weight(1f), tint = CleanColors.auroraViolet, padding = 16.dp, onClick = onOpenJournal) {
+            Text(stringResource(R.string.clean_journal_title).uppercase(), style = CleanType.label, color = CleanColors.textTertiary)
+            Spacer(Modifier.height(6.dp))
+            Row(verticalAlignment = Alignment.Bottom) {
+                Text(journal?.answered?.toString() ?: "–", style = CleanType.bigNumber, color = CleanColors.textPrimary)
+                if (journal != null) {
+                    Text(
+                        " / ${journal.total}",
+                        style = CleanType.unit,
+                        color = CleanColors.textSecondary,
+                        modifier = Modifier.padding(bottom = 6.dp),
+                    )
+                }
+            }
+            Text(
+                stringResource(
+                    if (journal != null && journal.answered > 0) R.string.clean_journal_tile_logged
+                    else R.string.clean_journal_tile_empty,
+                ),
+                style = CleanType.caption,
+                color = CleanColors.textTertiary,
+            )
+        }
     }
 }
 

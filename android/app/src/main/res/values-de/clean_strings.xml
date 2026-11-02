@@ -207,4 +207,189 @@
     <string name="clean_more_classic">Klassische Ansichten</string>
     <string name="clean_design_title">Clean-Design</string>
     <string name="clean_design_body">Ausschalten, um zum klassischen NOOP-Design zurückzukehren.</string>
+    <string name="clean_more_pages">Neue Seiten</string>
+    <string name="clean_loading">Lädt …</string>
+    <string name="clean_yes">Ja</string>
+    <string name="clean_no">Nein</string>
+
+    <!-- Stress -->
+    <string name="clean_stress_title">Stress</string>
+    <string name="clean_stress_subtitle">Wie angespannt dein Körper ist</string>
+    <string name="clean_stress_low">Niedrig</string>
+    <string name="clean_stress_medium">Mittel</string>
+    <string name="clean_stress_high">Hoch</string>
+    <string name="clean_stress_of_3">von 3</string>
+    <string name="clean_stress_none">Noch kein Stresswert. Dafür braucht es ein paar Nächte mit Ruhepuls und HRV.</string>
+    <string name="clean_stress_rhr_up">Ruhepuls %1$s über normal</string>
+    <string name="clean_stress_rhr_down">Ruhepuls %1$s unter normal</string>
+    <string name="clean_stress_hrv_up">HRV %1$s über normal</string>
+    <string name="clean_stress_hrv_down">HRV %1$s unter normal</string>
+    <string name="clean_stress_breathe_title">Mit einer Atemübung runterfahren</string>
+    <string name="clean_stress_breathe_body">Geführtes Atmen kann den Puls senken und die HRV schon nach wenigen Minuten heben.</string>
+    <string name="clean_stress_chart_explain">Jeder Balken ist der Stresswert eines Tages von 0 bis 3.</string>
+    <string name="clean_stress_legend_low">0–1 niedrig</string>
+    <string name="clean_stress_legend_medium">1–2 mittel</string>
+    <string name="clean_stress_legend_high">2–3 hoch</string>
+    <string name="clean_stress_how_title">So wird Stress gemessen</string>
+    <string name="clean_stress_how_body">Der Tageswert vergleicht deinen Ruhepuls und deine HRV mit deinen letzten 30 Tagen: Ein höherer Ruhepuls und eine niedrigere HRV bedeuten mehr Last für dein Nervensystem. Die Kurve macht dasselbe über den Tag aus dem heutigen Puls. Zeit in Bewegung wird ausgelassen, denn Anstrengung ist kein Stress.</string>
+    <string name="clean_stress_today_title">Im Tagesverlauf</string>
+    <string name="clean_stress_today_explain">Stress aus Puls und HRV, alle 30 Minuten. Tippen zeigt einen Zeitpunkt.</string>
+    <string name="clean_stress_today_none">Heute noch keine Pulsdaten. Synchronisiere dein Band.</string>
+    <string name="clean_stress_moving">Bewegung</string>
+    <string name="clean_stress_latest">Zuletzt:</string>
+    <string name="clean_stress_peak">Höchstwert heute %1$s um %2$s</string>
+    <string name="clean_stress_masked">%1$d Std. ausgelassen, weil du in Bewegung warst</string>
+
+    <!-- Logbook -->
+    <string name="clean_journal_title">Logbuch</string>
+    <string name="clean_journal_subtitle">Deine Gewohnheiten und ihre Wirkung</string>
+    <string name="clean_journal_log_title">Was hast du gemacht?</string>
+    <string name="clean_journal_log_explain">Die Antworten beschreiben Tag und Nacht vor der Erholung dieses Morgens.</string>
+    <string name="clean_journal_logged_count">%1$d von %2$d beantwortet</string>
+    <string name="clean_journal_numeric_classic">in der klassischen Ansicht</string>
+    <string name="clean_journal_catalog_title">Gewohnheiten hinzufügen</string>
+    <string name="clean_journal_catalog_explain">Tippe eine Gewohnheit an, um sie ins Logbuch aufzunehmen – nochmal tippen entfernt sie.</string>
+    <string name="clean_journal_insights_title">Was hilft, was schadet</string>
+    <string name="clean_journal_insights_explain">Dein Schnitt an Tagen mit einer Gewohnheit im Vergleich zu Tagen, an denen du sie mit „Nein“ geloggt hast. Belastbar ab etwa 5 Tagen je Seite.</string>
+    <string name="clean_journal_insights_empty">Noch zu wenig Einträge. Logge ein paar Wochen mit Ja- und Nein-Antworten, dann erscheinen hier die Effekte.</string>
+    <string name="clean_journal_hurts">◀ schadet</string>
+    <string name="clean_journal_helps">hilft ▶</string>
+    <string name="clean_journal_effect_detail">%1$d× mit · %2$d× ohne · %3$s</string>
+    <string name="clean_journal_clear">deutlicher Effekt</string>
+    <string name="clean_journal_unsure">noch unsicher</string>
+    <string name="clean_lag_same_day">am selben Tag</string>
+    <string name="clean_lag_next_morning">am nächsten Morgen</string>
+    <string name="clean_lag_two_days">zwei Tage später</string>
+    <string name="clean_journal_classic_title">Experimente und Details</string>
+    <string name="clean_journal_classic_body">Dosis-Effekte von Alkohol und Koffein, Experimente und Zusammenhänge in der klassischen Ansicht.</string>
+    <string name="clean_journal_tile_logged">heute eingetragen</string>
+    <string name="clean_journal_tile_empty">Heute eintragen</string>
+    <string name="clean_jgroup_supplements">Ergänzungsmittel</string>
+    <string name="clean_jgroup_nutrition">Ernährung</string>
+    <string name="clean_jgroup_lifestyle">Lebensstil</string>
+    <string name="clean_jgroup_health">Gesundheit</string>
+    <string name="clean_jgroup_behaviour">Training und Verhalten</string>
+    <string name="clean_jgroup_other">Sonstiges</string>
+    <string name="clean_starter_alcohol">Alkohol getrunken</string>
+    <string name="clean_starter_caffeine">Koffein am späten Tag</string>
+    <string name="clean_starter_screen">Bildschirm im Bett</string>
+    <string name="clean_starter_late_meal">Spät gegessen</string>
+    <string name="clean_starter_stressed">Gestresst gefühlt</string>
+    <string name="clean_starter_sauna">Sauna</string>
+    <string name="clean_starter_shared_bed">Bett geteilt</string>
+    <string name="clean_starter_sick">Krank gefühlt</string>
+    <string name="clean_starter_magnesium">Magnesium genommen</string>
+    <string name="clean_starter_read">Vor dem Schlafen gelesen</string>
+    <string name="clean_habits_nutrition_title">Essen</string>
+    <string name="clean_habits_drinks_title">Getränke</string>
+    <string name="clean_habits_supplements_title">Ergänzungsmittel</string>
+    <string name="clean_habits_evening_title">Abend und Schlaf</string>
+    <string name="clean_habits_training_title">Training und Bewegung</string>
+    <string name="clean_habits_health_title">Körper und Gesundheit</string>
+    <string name="clean_habits_mind_title">Kopf und Erholung</string>
+    <string name="clean_habits_context_title">Umgebung</string>
+    <string-array name="clean_habits_nutrition">
+        <item>Viel Zucker gegessen</item>
+        <item>Fast Food gegessen</item>
+        <item>Viel Gemüse gegessen</item>
+        <item>Viel Protein gegessen</item>
+        <item>Kohlenhydratreiches Abendessen</item>
+        <item>Intervallfasten</item>
+        <item>Mahlzeit ausgelassen</item>
+        <item>Pflanzlich gegessen</item>
+        <item>Scharf gegessen</item>
+        <item>Großes Abendessen</item>
+        <item>Milchprodukte gegessen</item>
+        <item>Obst gegessen</item>
+    </string-array>
+    <string-array name="clean_habits_drinks">
+        <item>2+ Liter Wasser getrunken</item>
+        <item>Kaffee getrunken</item>
+        <item>Energydrink getrunken</item>
+        <item>Grüner Tee oder Matcha</item>
+        <item>Softdrinks getrunken</item>
+        <item>Mehr als 2 alkoholische Getränke</item>
+        <item>Elektrolyte getrunken</item>
+        <item>Kräutertee am Abend</item>
+    </string-array>
+    <string-array name="clean_habits_supplements">
+        <item>Vitamin D</item>
+        <item>Omega-3</item>
+        <item>Kreatin</item>
+        <item>Melatonin</item>
+        <item>Zink</item>
+        <item>Ashwagandha</item>
+        <item>Eisen</item>
+        <item>Multivitamin</item>
+        <item>Proteinshake</item>
+        <item>Probiotika</item>
+        <item>L-Theanin</item>
+        <item>Schlafmittel genommen</item>
+    </string-array>
+    <string-array name="clean_habits_evening">
+        <item>Blaulichtbrille getragen</item>
+        <item>Schlafmaske getragen</item>
+        <item>Ohrstöpsel genutzt</item>
+        <item>Kühles Schlafzimmer (unter 19 °C)</item>
+        <item>Bei offenem Fenster geschlafen</item>
+        <item>Feste Schlafenszeit eingehalten</item>
+        <item>Mittagsschlaf gemacht</item>
+        <item>Nach Mitternacht ins Bett</item>
+        <item>Mit Wecker aufgewacht</item>
+        <item>Haustier im Schlafzimmer</item>
+        <item>Mund-Tape genutzt</item>
+        <item>Abends heiß geduscht oder gebadet</item>
+        <item>Spät noch am Bildschirm gearbeitet</item>
+    </string-array>
+    <string-array name="clean_habits_training">
+        <item>Krafttraining</item>
+        <item>Ausdauertraining</item>
+        <item>Intervalltraining (HIIT)</item>
+        <item>Yoga oder Mobility</item>
+        <item>Spaziergang über 30 Minuten</item>
+        <item>10.000 Schritte</item>
+        <item>Nach 20 Uhr trainiert</item>
+        <item>Gedehnt</item>
+        <item>Muskelkater</item>
+        <item>Wettkampf</item>
+        <item>Ruhetag</item>
+        <item>Kalt geduscht oder Eisbad</item>
+        <item>Massage oder Faszienrolle</item>
+    </string-array>
+    <string-array name="clean_habits_health">
+        <item>Kopfschmerzen</item>
+        <item>Erkältungssymptome</item>
+        <item>Allergie</item>
+        <item>Schmerzen oder Verletzung</item>
+        <item>Medikamente genommen</item>
+        <item>Periode</item>
+        <item>Verdauungsprobleme</item>
+        <item>Geimpft</item>
+        <item>Sonnenbrand</item>
+    </string-array>
+    <string-array name="clean_habits_mind">
+        <item>Meditiert</item>
+        <item>Atemübung gemacht</item>
+        <item>Zeit in der Natur</item>
+        <item>Tageslicht am Morgen</item>
+        <item>Mit Freunden unterwegs</item>
+        <item>Lange Bildschirmzeit</item>
+        <item>Über 10 Stunden gearbeitet</item>
+        <item>Ängstlich gefühlt</item>
+        <item>Glücklich gefühlt</item>
+        <item>Tagebuch geschrieben</item>
+        <item>Sexuelle Aktivität</item>
+    </string-array>
+    <string-array name="clean_habits_context">
+        <item>Gereist</item>
+        <item>Jetlag</item>
+        <item>Auswärts geschlafen</item>
+        <item>In der Höhe (über 1.500 m)</item>
+        <item>Nachtschicht</item>
+        <item>Langer Arbeitsweg</item>
+        <item>Laute Umgebung</item>
+        <item>Heißes Wetter</item>
+        <item>Geraucht</item>
+        <item>Cannabis</item>
+    </string-array>
 </resources>

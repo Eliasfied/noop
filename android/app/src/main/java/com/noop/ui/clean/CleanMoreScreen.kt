@@ -17,7 +17,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
+import androidx.compose.material.icons.rounded.EditNote
 import androidx.compose.material.icons.rounded.Palette
+import androidx.compose.material.icons.rounded.Spa
 import androidx.compose.material.icons.rounded.Sync
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -85,6 +87,7 @@ internal fun CleanMoreScreen(vm: AppViewModel, onNavigate: (String) -> Unit) {
             }
         }
         var index = 3
+        CleanPagesGroup(onNavigate, Modifier.cleanReveal(index++))
         DestinationGroup(stringResource(R.string.clean_more_classic), classic, onNavigate, Modifier.cleanReveal(index++))
         drawerGroups.forEach { group ->
             DestinationGroup(stringResource(group.headerRes), group.items, onNavigate, Modifier.cleanReveal(index++))
@@ -161,6 +164,47 @@ private fun StrapCard(
             Icon(Icons.Rounded.Sync, null, tint = CleanColors.strainBright, modifier = Modifier.size(18.dp))
             Spacer(Modifier.width(8.dp))
             Text(stringResource(R.string.clean_sync_now), style = CleanType.body, color = CleanColors.textPrimary)
+        }
+    }
+}
+
+/** A clean page listed on More: its route, icon, title and accent. */
+private data class CleanPage(val route: String, val icon: androidx.compose.ui.graphics.vector.ImageVector, val titleRes: Int, val accent: androidx.compose.ui.graphics.Color)
+
+private val cleanPages = listOf(
+    CleanPage(CleanRoutes.STRESS, Icons.Rounded.Spa, R.string.clean_stress_title, CleanColors.trend),
+    CleanPage(CleanRoutes.JOURNAL, Icons.Rounded.EditNote, R.string.clean_journal_title, CleanColors.sleep),
+)
+
+@Composable
+private fun CleanPagesGroup(onNavigate: (String) -> Unit, modifier: Modifier = Modifier) {
+    Column(modifier) {
+        SectionLabel(stringResource(R.string.clean_more_pages))
+        Spacer(Modifier.height(6.dp))
+        GlassCard(padding = 4.dp) {
+            cleanPages.forEachIndexed { i, page ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(20.dp))
+                        .clickable(role = Role.Button) { onNavigate(page.route) }
+                        .padding(horizontal = 14.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    IconBadge(page.icon, page.accent)
+                    Spacer(Modifier.width(12.dp))
+                    Text(
+                        stringResource(page.titleRes),
+                        style = CleanType.body,
+                        color = CleanColors.textPrimary,
+                        modifier = Modifier.weight(1f),
+                    )
+                    Icon(Icons.Rounded.ChevronRight, null, tint = CleanColors.textTertiary)
+                }
+                if (i < cleanPages.lastIndex) {
+                    HorizontalDivider(color = CleanColors.hairline, modifier = Modifier.padding(start = 62.dp, end = 14.dp))
+                }
+            }
         }
     }
 }

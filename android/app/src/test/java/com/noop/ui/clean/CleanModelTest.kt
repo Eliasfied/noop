@@ -267,6 +267,9 @@ class CleanModelTest {
         assertEquals(0, cleanActiveTab(listOf(null, CleanRoutes.HOME, "devices")))
         assertEquals(2, cleanActiveTab(listOf(null, CleanRoutes.HOME, CleanRoutes.TRENDS)))
         assertEquals(3, cleanActiveTab(listOf(null, "today")))
+        // A clean page reached from More keeps More lit; reached from Home, Home.
+        assertEquals(3, cleanActiveTab(listOf(null, CleanRoutes.HOME, CleanRoutes.MORE, CleanRoutes.STRESS)))
+        assertEquals(0, cleanActiveTab(listOf(null, CleanRoutes.HOME, CleanRoutes.JOURNAL)))
     }
 
     @Test

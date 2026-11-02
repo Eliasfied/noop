@@ -106,6 +106,8 @@ object CleanRoutes {
     const val SLEEP = "clean_sleep"
     const val TRENDS = "clean_trends"
     const val MORE = "clean_more"
+    const val STRESS = "clean_stress"
+    const val JOURNAL = "clean_journal"
 }
 
 /**
@@ -134,6 +136,22 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             onOpenStrain = { nav.navigate(CleanRoutes.STRAIN) },
             onOpenSleep = { nav.navigateCleanTab(CleanRoutes.SLEEP) },
             onOpenDevices = { nav.navigate(Destination.Devices.route) },
+            onOpenStress = { nav.navigate(CleanRoutes.STRESS) },
+            onOpenJournal = { nav.navigate(CleanRoutes.JOURNAL) },
+        )
+    }
+    composable(CleanRoutes.STRESS) {
+        CleanStressScreen(
+            vm = vm,
+            onBack = { nav.popBackStack() },
+            onOpenBreathe = { nav.navigate(Destination.Breathe.route) },
+        )
+    }
+    composable(CleanRoutes.JOURNAL) {
+        CleanJournalScreen(
+            vm = vm,
+            onBack = { nav.popBackStack() },
+            onOpenClassic = { nav.navigate(Destination.Insights.route) },
         )
     }
     composable(CleanRoutes.RECOVERY) { CleanRecoveryScreen(vm = vm, onBack = { nav.popBackStack() }) }
@@ -168,15 +186,16 @@ internal fun cleanTabIndex(route: String?): Int = when (route) {
     else -> 3
 }
 
+/** The four routes a tab opens on. */
+private val tabRoots = setOf(CleanRoutes.HOME, CleanRoutes.SLEEP, CleanRoutes.TRENDS, CleanRoutes.MORE)
+
 /**
- * The lit tab for a back stack (routes bottom to top): the tab of the nearest clean screen at or below the
- * top. A classic screen pushed from a clean tab therefore keeps that tab lit (the classic Sleep screen
- * opened from clean Sleep lights Sleep), instead of always reading as More.
+ * The lit tab for a back stack (routes bottom to top): the tab whose root page sits nearest below the top.
+ * A page opened from a tab keeps that tab lit, clean or classic alike (the classic Sleep screen opened from
+ * clean Sleep lights Sleep, Stress opened from More lights More), instead of always reading as More.
  */
 internal fun cleanActiveTab(stack: List<String?>): Int =
-    cleanTabIndex(stack.lastOrNull { it != null && it.startsWith(CLEAN_ROUTE_PREFIX) })
-
-private const val CLEAN_ROUTE_PREFIX = "clean_"
+    cleanTabIndex(stack.lastOrNull { it in tabRoots })
 
 /**
  * The clean design's floating tab bar: a glass capsule whose selection is a lens that glides between tabs
