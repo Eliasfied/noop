@@ -118,6 +118,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.noop.push.SelfHostedPushScreen
+import com.noop.ui.clean.CleanDesign
+import com.noop.ui.clean.CleanDesignSwitchRow
+import com.noop.ui.clean.CleanRoutes
+import com.noop.ui.clean.CleanTabBar
+import com.noop.ui.clean.cleanGraph
 
 // MARK: - Navigation model
 //
@@ -518,6 +523,9 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
     // the Today cards and the import path post to the same inbox this sheet renders.
     val context = androidx.compose.ui.platform.LocalContext.current
     val updateStore = remember { UpdateStore.from(context) }
+    // The optional clean design (com.noop.ui.clean): its own start page and tab bar over this NavHost.
+    remember { CleanDesign.load(context) }
+    val clean = CleanDesign.enabled
     var showUpdatesInbox by remember { mutableStateOf(false) }
     // #984: the changelog sheet a What's New inbox row opens. Held here (not inside the inbox) so it
     // survives the inbox sheet closing — the tap dismisses the inbox and presents this over the app.
@@ -582,7 +590,7 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
                 // DEFAULT path: the shipped reserved slot, unchanged. Empty only when the overlay is
                 // on, where the bar is drawn below as a sibling and the slot must reserve nothing.
                 if (!BottomBarStyleStore.overlay) {
-                    GlassBottomBar(
+                    if (clean) CleanTabBar(currentRoute, { if (it != currentRoute) nav.navigateTopLevel(it) }) else GlassBottomBar(
                         current = current,
                         onTabSelected = { dest ->
                             if (dest.route != currentRoute) nav.navigateTopLevel(dest.route)
@@ -593,7 +601,7 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
         ) { inner ->
             NavHost(
                 navController = nav,
-                startDestination = Destination.Today.route,
+                startDestination = if (clean) CleanRoutes.HOME else Destination.Today.route,
                 // The empty slot reserves nothing, so the bar's height is added here — the one place the
                 // inset used to come from. A scrollable that later wants content to pass UNDER the glass
                 // adds this measured height to its own contentPadding instead; no shared modifier can.
@@ -625,6 +633,7 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
                 popEnterTransition = { fadeIn(navFadeSpec) },
                 popExitTransition = { fadeOut(navFadeSpec) },
             ) {
+                cleanGraph(nav, viewModel) { nav.navigateTopLevel(it) }
                 // --- Live, working screens (existing waves) ---
                 composable(Destination.Today.route) {
                     TodayScreen(
@@ -938,12 +947,7 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
         // TalkBack could focus a bar nobody can see and a tap could land on a control that is not there.
         // Dropping it at the end of the animation removes both. Safe precisely because it is an overlay —
         // it reserves no space, so composing or not composing it never reflows content.
-        if (BottomBarStyleStore.overlay && barPresent) GlassBottomBar(
-            current = current,
-            onTabSelected = { dest ->
-                if (dest.route != currentRoute) nav.navigateTopLevel(dest.route)
-            },
-            modifier = Modifier
+        val overlayBarModifier = Modifier
                 .align(Alignment.BottomCenter)
                 .graphicsLayer {
                     // Slide it out past its own height so the whole capsule clears the edge, and fade so
@@ -955,8 +959,20 @@ fun AppRoot(viewModel: AppViewModel = viewModel()) {
                 .onSizeChanged {
                     barHeightPx = it.height
                     BottomBarStyleStore.barHeight = with(density) { it.height.toDp() }
-                },
-        )
+                }
+        if (BottomBarStyleStore.overlay && barPresent) {
+            if (clean) {
+                CleanTabBar(currentRoute, { if (it != currentRoute) nav.navigateTopLevel(it) }, overlayBarModifier)
+            } else {
+                GlassBottomBar(
+                    current = current,
+                    onTabSelected = { dest ->
+                        if (dest.route != currentRoute) nav.navigateTopLevel(dest.route)
+                    },
+                    modifier = overlayBarModifier,
+                )
+            }
+        }
     }
 }
 
@@ -999,6 +1015,7 @@ private fun MoreScreen(onNavigate: (String) -> Unit) {
         // Sky-behind-cards fills the viewport so the transparent cards reveal the sky the whole way down.
         fullBleedBackground = screenBackdropFullBleed(showDayCycleBackground, skyBehindCards),
     ) {
+        CleanDesignSwitchRow(onEnabled = {})
         // Mirror the iOS More page: each group is a tappable UPPERCASE overline header (with a disclosure
         // chevron) over a single grouped white NoopCard whose rows are tight (accent icon + title +
         // chevron) and separated by inset hairlines (NOT loose NavigationDrawerItems on the bare surface).

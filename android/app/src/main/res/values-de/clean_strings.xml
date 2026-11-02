@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- German strings of the optional clean design (com.noop.ui.clean). -->
+<resources>
+    <!-- Shell -->
+    <string name="clean_back">Zurück</string>
+    <string name="clean_today">Heute</string>
+    <string name="clean_yesterday">Gestern</string>
+    <string name="clean_tab_home">Home</string>
+    <string name="clean_tab_sleep">Schlaf</string>
+    <string name="clean_tab_trends">Trends</string>
+    <string name="clean_tab_more">Mehr</string>
+    <string name="clean_switch_title">Neues Design (Clean)</string>
+    <string name="clean_switch_subtitle">Ruhige Glas-Optik mit drei Dials. Jederzeit unter „Mehr“ zurückschaltbar.</string>
+
+    <!-- Formats -->
+    <string name="clean_pattern_day_month">d. MMM</string>
+    <string name="clean_pattern_axis_date">d.M.</string>
+    <string name="clean_pattern_long_date">EEEE, d. MMMM</string>
+    <string name="clean_fmt_percent">%1$s %%</string>
+    <string name="clean_fmt_hours_minutes">%1$d:%2$02d h</string>
+    <string name="clean_fmt_hours_short">%1$s h</string>
+    <string name="clean_fmt_minutes">%1$d Min.</string>
+    <string name="clean_value_points">%1$s Pkt.</string>
+    <string name="clean_points">%1$s Pkt.</string>
+
+    <!-- Home -->
+    <string name="clean_home_title">Heute</string>
+    <string name="clean_recovery">Erholung</string>
+    <string name="clean_strain">Belastung</string>
+    <string name="clean_sleep">Schlaf</string>
+    <string name="clean_as_of">Stand %1$s</string>
+    <string name="clean_dial_calibrating">Kalibriert</string>
+    <string name="clean_dial_no_data">Keine Daten</string>
+    <string name="clean_dial_of_21">von 21</string>
+    <string name="clean_link_connected">Verbunden</string>
+    <string name="clean_link_connected_battery">Verbunden · %1$d %%</string>
+    <string name="clean_link_syncing">Synchronisiert …</string>
+    <string name="clean_link_disconnected">Nicht verbunden</string>
+    <string name="clean_battery">Akku %1$s</string>
+    <string name="clean_last_sync">Zuletzt synchronisiert %1$s</string>
+    <string name="clean_sync_now">Jetzt synchronisieren</string>
+    <string name="clean_verdict_label">Plan für heute</string>
+    <string name="clean_verdict_push_title">Heute pushen</string>
+    <string name="clean_verdict_push_body">Deine Erholung ist hoch – dein Körper ist bereit für eine harte Einheit.</string>
+    <string name="clean_verdict_maintain_title">Normal trainieren</string>
+    <string name="clean_verdict_maintain_body">Deine Erholung ist mittel. Trainiere wie gewohnt, aber übertreib es nicht.</string>
+    <string name="clean_verdict_recover_title">Regenerieren</string>
+    <string name="clean_verdict_recover_body">Deine Erholung ist niedrig. Halte den Tag leicht – Schlaf und Erholung haben Vorrang.</string>
+    <string name="clean_verdict_none_title">Noch keine Empfehlung</string>
+    <string name="clean_verdict_none_body">Sobald deine Erholung berechnet ist, siehst du hier, wie viel Belastung heute sinnvoll ist.</string>
+    <string name="clean_verdict_based_on">Basierend auf deiner Erholung vom %1$s – heute ist noch nicht berechnet.</string>
+    <string name="clean_verdict_target">Empfohlene Belastung heute: %1$d–%2$d</string>
+    <string name="clean_target_now">Aktuell %1$s</string>
+    <string name="clean_target_below">Noch %1$s bis zum empfohlenen Bereich</string>
+    <string name="clean_target_within">Im empfohlenen Bereich</string>
+    <string name="clean_target_above">Über dem empfohlenen Bereich – plane Erholung ein</string>
+    <string name="clean_target_from_recovery">Abgeleitet aus deiner heutigen Erholung von %1$s.</string>
+    <string name="clean_vitals">Vitalwerte</string>
+    <string name="clean_vitals_of_night">Nacht auf %1$s</string>
+    <string name="clean_vitals_legend">Helles Band = dein Normalbereich · Punkt = letzte Nacht</string>
+    <string name="clean_vital_rhr">Ruhepuls</string>
+    <string name="clean_vital_resp">Atemfrequenz</string>
+    <string name="clean_vital_sleep">Schlafdauer</string>
+    <string name="clean_vital_skin">Hauttemperatur</string>
+    <string name="clean_vital_spo2">Blutsauerstoff</string>
+    <string name="clean_vital_in_range">Im Normalbereich</string>
+    <string name="clean_vital_above">%1$s über normal</string>
+    <string name="clean_vital_below">%1$s unter normal</string>
+    <string name="clean_vital_learning">Normalbereich wird noch gelernt</string>
+    <string name="clean_vital_normal_range">Normal %1$s–%2$s</string>
+    <string name="clean_last_night">Letzte Nacht</string>
+    <string name="clean_sleep_none">Noch keine Nacht erfasst. Trag das Band nachts und synchronisiere morgens.</string>
+    <string name="clean_sleep_performance">Schlafleistung</string>
+    <string name="clean_stage_awake">Wach</string>
+    <string name="clean_stage_light">Leicht</string>
+    <string name="clean_stage_deep">Tief</string>
+    <string name="clean_stage_awake_desc">Kurze Wachphasen</string>
+    <string name="clean_stage_rem_desc">Träume, Gedächtnis, mentale Erholung</string>
+    <string name="clean_stage_light_desc">Großteil der Nacht, Übergänge</string>
+    <string name="clean_stage_deep_desc">Körperliche Erholung</string>
+    <string name="clean_activity_today">Aktivität heute</string>
+    <string name="clean_steps">Schritte</string>
+    <string name="clean_steps_value">%1$s Schritte</string>
+    <string name="clean_kcal">Kalorien</string>
+    <string name="clean_workouts">Workouts</string>
+    <string name="clean_activity_estimated">Schritte und Kalorien sind Schätzungen aus Bewegung und Puls deines Bands.</string>
+    <string name="clean_activity_generic">Aktivität</string>
+    <string name="clean_honesty_note">Alle Werte berechnet dein Handy aus den Daten deines Bands. Sie folgen bekannten Konzepten (Erholung, Belastung, Schlafleistung), sind aber eigene NOOP-Berechnungen und können von anderen Apps abweichen.</string>
+    <plurals name="clean_calibrating_nights">
+        <item quantity="one">Noch etwa %d Nacht bis zu deinem ersten Erholungswert.</item>
+        <item quantity="other">Noch etwa %d Nächte bis zu deinem ersten Erholungswert.</item>
+    </plurals>
+
+    <!-- Recovery -->
+    <string name="clean_calibrating_explain">NOOP lernt zuerst deine normale HRV und deinen Ruhepuls. Trag das Band jede Nacht.</string>
+    <string name="clean_recovery_no_data">Heute noch keine Erholung. Trag das Band über Nacht und synchronisiere morgens.</string>
+    <string name="clean_zone_high">Hoch</string>
+    <string name="clean_zone_mid">Mittel</string>
+    <string name="clean_zone_low">Niedrig</string>
+    <string name="clean_vs_average_above">%1$d Punkte über deinem 30-Tage-Schnitt (%2$s)</string>
+    <string name="clean_vs_average_below">%1$d Punkte unter deinem 30-Tage-Schnitt (%2$s)</string>
+    <string name="clean_vs_average_same">Genau auf deinem 30-Tage-Schnitt (%1$s)</string>
+    <string name="clean_carried_fresh">Heute ist noch nicht berechnet – angezeigt wird die letzte Nacht (%1$s).</string>
+    <string name="clean_carried_stale">Keine aktuelle Nacht – angezeigt wird deine letzte Erholung (%1$s).</string>
+    <string name="clean_drivers_title">Was hat das beeinflusst</string>
+    <string name="clean_drivers_explain">Wie stark jeder Wert deine Erholung gehoben (grün) oder gesenkt (orange) hat – in Prozentpunkten.</string>
+    <string name="clean_drivers_lowered">◀ senkt</string>
+    <string name="clean_drivers_lifted">hebt ▶</string>
+    <string name="clean_drivers_empty">Verfügbar, sobald deine Erholung berechnet ist.</string>
+    <string name="clean_driver_vs_normal">%1$s · dein Normalwert %2$s</string>
+    <string name="clean_driver_sleep_detail">%1$s · hebt die Erholung ab %2$s</string>
+    <string name="clean_driver_skin_detail">%1$s ggü. deiner Basis · jede Abweichung senkt die Erholung</string>
+    <string name="clean_history">Verlauf</string>
+    <string name="clean_range_7">7 Tage</string>
+    <string name="clean_range_30">30 Tage</string>
+    <string name="clean_range_90">90 Tage</string>
+    <string name="clean_recovery_chart_explain">Jeder Balken ist die Erholung eines Morgens, eingefärbt nach Bereich. Gestrichelt: dein Schnitt im Zeitraum. Tippe auf einen Balken, um den Tag zu sehen.</string>
+    <string name="clean_avg_period">Schnitt der letzten %1$d Tage</string>
+    <string name="clean_no_data_day">keine Daten</string>
+    <string name="clean_no_data_period">Keine Daten in diesem Zeitraum</string>
+    <string name="clean_legend_zone_high" formatted="false">67–100 % hoch</string>
+    <string name="clean_legend_zone_mid" formatted="false">34–66 % mittel</string>
+    <string name="clean_legend_zone_low" formatted="false">0–33 % niedrig</string>
+    <string name="clean_legend_average">Schnitt</string>
+    <string name="clean_band_normal">Normalbereich</string>
+    <string name="clean_hrv_chart_title">HRV – der wichtigste Faktor</string>
+    <string name="clean_hrv_chart_explain">Herzfrequenzvariabilität jeder Nacht. Das Band ist dein aktueller Normalbereich – darüber bist du meist gut erholt.</string>
+    <string name="clean_recovery_how_title">So wird die Erholung berechnet</string>
+    <string name="clean_recovery_how_body">NOOP vergleicht die Werte der letzten Nacht mit deinem persönlichen Normalwert und gewichtet sie – HRV zählt am meisten. Fehlt ein Wert, wird er weggelassen und der Rest neu gewichtet.</string>
+    <string name="clean_weight_extra" formatted="false">Wenn verfügbar, zählen auch der Puls-Abfall über Nacht und die Belastung vom Vortag mit je etwa 5 %.</string>
+
+    <!-- Strain -->
+    <string name="clean_level_light">Leicht</string>
+    <string name="clean_level_moderate">Moderat</string>
+    <string name="clean_level_high">Hoch</string>
+    <string name="clean_level_all_out">Maximal</string>
+    <string name="clean_strain_no_data">Heute noch keine Belastung erfasst.</string>
+    <string name="clean_strain_target_title">Wo du heute stehst</string>
+    <string name="clean_strain_target_explain">Die Skala reicht von 0 bis 21. Der Rahmen ist der Bereich, den deine heutige Erholung empfiehlt; der Punkt ist deine bisherige Belastung.</string>
+    <string name="clean_strain_no_target">Die Skala reicht von 0 bis 21. Ein empfohlener Bereich erscheint, sobald deine Erholung berechnet ist.</string>
+    <string name="clean_workouts_today">Workouts heute</string>
+    <string name="clean_workouts_none">Heute noch keine Workouts erfasst.</string>
+    <string name="clean_workouts_open">Alle Workouts</string>
+    <string name="clean_strain_chart_explain">Jeder Balken ist die Gesamtbelastung eines Tages, eingefärbt nach Stufe. Gestrichelt: dein Schnitt im Zeitraum.</string>
+    <string name="clean_strain_how_title">Was Belastung bedeutet</string>
+    <string name="clean_strain_how_body">Belastung misst, wie stark Herz und Kreislauf über den Tag gefordert waren – aus der Zeit in höheren Pulsbereichen, gemessen an deinem Ruhe- und Maximalpuls. Die Skala ist logarithmisch: Von 18 auf 19 kostet viel mehr Anstrengung als von 8 auf 9.</string>
+
+    <!-- Sleep -->
+    <string name="clean_night_of">Nacht auf %1$s</string>
+    <string name="clean_night_older">Frühere Nacht</string>
+    <string name="clean_night_newer">Spätere Nacht</string>
+    <string name="clean_fact_asleep">Geschlafen</string>
+    <string name="clean_fact_in_bed">Im Bett</string>
+    <string name="clean_fact_fell_asleep">Eingeschlafen</string>
+    <string name="clean_fact_woke">Aufgewacht</string>
+    <string name="clean_chip_imported">Wert aus einem Import</string>
+    <string name="clean_chip_sparse">Wenig Bewegungsdaten – Phasen sind Schätzungen</string>
+    <string name="clean_chip_hr_only">Nur aus dem Puls erkannt</string>
+    <string name="clean_need_title">Schlaf vs. Bedarf</string>
+    <string name="clean_need_explain">Dein Schlaf im Vergleich zum Bedarf von %1$s, mit dem die Schlafleistung rechnet.</string>
+    <string name="clean_need_of">%1$s von %2$s</string>
+    <string name="clean_need_met">Bedarf erreicht</string>
+    <string name="clean_need_short">%1$s unter deinem Bedarf</string>
+    <string name="clean_need_over">%1$s über deinem Bedarf</string>
+    <string name="clean_hypnogram_title">Schlafverlauf</string>
+    <string name="clean_hypnogram_explain">Wann du in welcher Phase warst – je weiter unten, desto tiefer der Schlaf. Tippen oder ziehen zeigt einen Zeitpunkt.</string>
+    <string name="clean_hypnogram_hint">Tippe auf den Verlauf</string>
+    <string name="clean_hypnogram_none">Für diese Nacht gibt es keinen Phasenverlauf (nur Summen erfasst).</string>
+    <string name="clean_stages_title">Schlafphasen</string>
+    <string name="clean_stages_explain">Wie sich die Nacht auf die Phasen verteilt – mit deinem Schnitt über alle Nächte (Ø) zum Vergleich.</string>
+    <string name="clean_breakdown_title">Woraus sich die Schlafleistung zusammensetzt</string>
+    <string name="clean_breakdown_explain">Jeder Teil wird mit 0–100 bewertet und gewichtet. Zusammen ergibt das %1$s.</string>
+    <string name="clean_breakdown_unavailable">Der Wert dieser Nacht stammt aus einem Import und lässt sich nicht aufschlüsseln.</string>
+    <string name="clean_part_duration">Dauer vs. Bedarf</string>
+    <string name="clean_part_efficiency">Effizienz (Schlaf ÷ Bettzeit)</string>
+    <string name="clean_part_restorative">Erholsamer Schlaf (Tief + REM)</string>
+    <string name="clean_part_regularity">Regelmäßigkeit</string>
+    <string name="clean_part_regularity_note">wird noch nicht gemessen, zählt neutral</string>
+    <string name="clean_part_points">%1$s von %2$s Pkt.</string>
+    <string name="clean_part_weight">Gewicht %1$s</string>
+    <string name="clean_breakdown_footer">Die Dauer wird an einem Bedarf von %1$s gemessen; länger schlafen bringt keine Extrapunkte.</string>
+    <string name="clean_sleep_chart_title">Schlafdauer</string>
+    <string name="clean_sleep_chart_explain">Jeder Balken ist eine Nacht. Helle Balken haben den Bedarf erreicht; farbig gestrichelt ist der Bedarf, weiß gestrichelt dein Schnitt.</string>
+    <string name="clean_legend_need_met">Bedarf erreicht</string>
+    <string name="clean_legend_need_short">Unter Bedarf</string>
+    <string name="clean_legend_need">Bedarf</string>
+    <string name="clean_classic_sleep_title">Ausführliche Schlafansicht</string>
+    <string name="clean_classic_sleep_body">Bett- und Aufwachzeiten bearbeiten, Nickerchen und mehr in der klassischen Ansicht.</string>
+
+    <!-- Trends -->
+    <string name="clean_trends_subtitle">Wie sich deine Werte entwickeln</string>
+    <string name="clean_vs_previous">Veränderung ggü. den %1$d Tagen davor</string>
+    <string name="clean_no_previous">keine früheren Daten</string>
+    <string name="clean_trend_recovery_explain">Jeder Balken ist die Erholung eines Morgens.</string>
+    <string name="clean_trend_strain_explain">Jeder Balken ist die Belastung eines Tages.</string>
+    <string name="clean_trend_sleep_explain">Jeder Balken ist die Schlafleistung einer Nacht.</string>
+    <string name="clean_trend_duration_explain">Jeder Balken ist eine Nacht; gestrichelt: dein Bedarf.</string>
+    <string name="clean_trend_hrv_explain">HRV pro Nacht; das Band ist dein Normalbereich. Höher ist meist besser.</string>
+    <string name="clean_trend_rhr_explain">Ruhepuls pro Nacht; das Band ist dein Normalbereich. Niedriger ist meist besser.</string>
+    <string name="clean_trend_resp_explain">Atemzüge pro Minute im Schlaf; das Band ist dein Normalbereich. Ein plötzlicher Anstieg kann ein frühes Krankheitszeichen sein.</string>
+    <string name="clean_trend_avg_only">Schnitt %1$s.</string>
+    <string name="clean_trend_same">Schnitt %1$s – etwa gleich wie in den %2$d Tagen davor.</string>
+    <string name="clean_trend_vs_prev">Schnitt %1$s, in den %3$d Tagen davor %2$s.</string>
+
+    <!-- More -->
+    <string name="clean_more_subtitle">Alles Weitere, einen Tipp entfernt</string>
+    <string name="clean_more_classic">Klassische Ansichten</string>
+    <string name="clean_design_title">Clean-Design</string>
+    <string name="clean_design_body">Ausschalten, um zum klassischen NOOP-Design zurückzukehren.</string>
+</resources>

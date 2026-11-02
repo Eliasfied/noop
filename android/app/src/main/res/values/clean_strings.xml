@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings of the optional clean design (com.noop.ui.clean). Kept in their own file so the classic
+     strings.xml never conflicts with them. German lives in values-de/clean_strings.xml. -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Shell -->
+    <string name="clean_back">Back</string>
+    <string name="clean_today">Today</string>
+    <string name="clean_yesterday">Yesterday</string>
+    <string name="clean_tab_home">Home</string>
+    <string name="clean_tab_sleep">Sleep</string>
+    <string name="clean_tab_trends">Trends</string>
+    <string name="clean_tab_more">More</string>
+    <string name="clean_switch_title">New design (Clean)</string>
+    <string name="clean_switch_subtitle">Calm glass look with three dials. Switch back any time under More.</string>
+
+    <!-- Formats -->
+    <string name="clean_pattern_day_month">d MMM</string>
+    <string name="clean_pattern_axis_date">d/M</string>
+    <string name="clean_pattern_long_date">EEEE, d MMMM</string>
+    <string name="clean_fmt_percent">%1$s%%</string>
+    <string name="clean_fmt_hours_minutes">%1$d:%2$02d h</string>
+    <string name="clean_fmt_hours_short">%1$s h</string>
+    <string name="clean_fmt_minutes">%1$d min</string>
+    <string name="clean_unit_ms" translatable="false">ms</string>
+    <string name="clean_unit_bpm" translatable="false">bpm</string>
+    <string name="clean_unit_rpm" translatable="false">/min</string>
+    <string name="clean_value_ms" translatable="false">%1$s ms</string>
+    <string name="clean_value_bpm" translatable="false">%1$s bpm</string>
+    <string name="clean_value_rpm" translatable="false">%1$s /min</string>
+    <string name="clean_value_celsius" translatable="false">%1$s °C</string>
+    <string name="clean_value_points">%1$s pts</string>
+    <string name="clean_points">%1$s pts</string>
+    <string name="clean_asleep_window" translatable="false">%1$s – %2$s</string>
+    <string name="clean_stage_typical" translatable="false">Ø %1$s</string>
+    <string name="clean_kcal_value" translatable="false">%1$s kcal</string>
+
+    <!-- Home -->
+    <string name="clean_home_title">Today</string>
+    <string name="clean_recovery">Recovery</string>
+    <string name="clean_strain">Strain</string>
+    <string name="clean_sleep">Sleep</string>
+    <string name="clean_as_of">As of %1$s</string>
+    <string name="clean_dial_calibrating">Calibrating</string>
+    <string name="clean_dial_no_data">No data</string>
+    <string name="clean_dial_of_21">of 21</string>
+    <string name="clean_link_connected">Connected</string>
+    <string name="clean_link_connected_battery">Connected · %1$d%%</string>
+    <string name="clean_link_syncing">Syncing…</string>
+    <string name="clean_link_disconnected">Not connected</string>
+    <string name="clean_battery">Battery %1$s</string>
+    <string name="clean_last_sync">Last sync %1$s</string>
+    <string name="clean_sync_now">Sync now</string>
+    <string name="clean_verdict_label">Today\'s plan</string>
+    <string name="clean_verdict_push_title">Push today</string>
+    <string name="clean_verdict_push_body">Your recovery is high – your body is ready for a hard session.</string>
+    <string name="clean_verdict_maintain_title">Train normally</string>
+    <string name="clean_verdict_maintain_body">Your recovery is moderate. Train as usual, but don\'t overdo it.</string>
+    <string name="clean_verdict_recover_title">Recover</string>
+    <string name="clean_verdict_recover_body">Your recovery is low. Keep today light – sleep and rest come first.</string>
+    <string name="clean_verdict_none_title">No recommendation yet</string>
+    <string name="clean_verdict_none_body">Once your recovery is scored, you\'ll see here how much strain makes sense today.</string>
+    <string name="clean_verdict_based_on">Based on your recovery from %1$s – today is not scored yet.</string>
+    <string name="clean_verdict_target">Recommended strain today: %1$d–%2$d</string>
+    <string name="clean_target_now">Now %1$s</string>
+    <string name="clean_target_below">%1$s to go to the recommended range</string>
+    <string name="clean_target_within">In the recommended range</string>
+    <string name="clean_target_above">Above the recommended range – plan some recovery</string>
+    <string name="clean_target_from_recovery">Derived from today\'s recovery of %1$s.</string>
+    <string name="clean_vitals">Vitals</string>
+    <string name="clean_vitals_of_night">Night to %1$s</string>
+    <string name="clean_vitals_legend">Bright band = your normal range · dot = last night</string>
+    <string name="clean_vital_hrv" translatable="false">HRV</string>
+    <string name="clean_vital_rhr">Resting heart rate</string>
+    <string name="clean_vital_resp">Respiratory rate</string>
+    <string name="clean_vital_sleep">Sleep duration</string>
+    <string name="clean_vital_skin">Skin temperature</string>
+    <string name="clean_vital_spo2">Blood oxygen</string>
+    <string name="clean_vital_in_range">Within your normal range</string>
+    <string name="clean_vital_above">%1$s above normal</string>
+    <string name="clean_vital_below">%1$s below normal</string>
+    <string name="clean_vital_learning">Still learning your normal range</string>
+    <string name="clean_vital_normal_range">Normal %1$s–%2$s</string>
+    <string name="clean_last_night">Last night</string>
+    <string name="clean_sleep_none">No night recorded yet. Wear your strap to bed and sync in the morning.</string>
+    <string name="clean_sleep_performance">Sleep performance</string>
+    <string name="clean_stage_awake">Awake</string>
+    <string name="clean_stage_rem" translatable="false">REM</string>
+    <string name="clean_stage_light">Light</string>
+    <string name="clean_stage_deep">Deep</string>
+    <string name="clean_stage_awake_desc">Short wake-ups</string>
+    <string name="clean_stage_rem_desc">Dreams, memory, mental recovery</string>
+    <string name="clean_stage_light_desc">Most of the night, transitions</string>
+    <string name="clean_stage_deep_desc">Physical recovery</string>
+    <string name="clean_activity_today">Activity today</string>
+    <string name="clean_steps">Steps</string>
+    <string name="clean_steps_value">%1$s steps</string>
+    <string name="clean_kcal">Calories</string>
+    <string name="clean_workouts">Workouts</string>
+    <string name="clean_activity_estimated">Steps and calories are estimates from your strap\'s motion and heart rate.</string>
+    <string name="clean_activity_generic">Activity</string>
+    <string name="clean_honesty_note">All scores are calculated on your phone from your strap\'s data. They follow well-known ideas (recovery, strain, sleep performance) but are NOOP\'s own calculations, so they can differ from other apps.</string>
+    <plurals name="clean_calibrating_nights">
+        <item quantity="one">About %d more night until your first recovery score.</item>
+        <item quantity="other">About %d more nights until your first recovery score.</item>
+    </plurals>
+
+    <!-- Recovery -->
+    <string name="clean_calibrating_explain">NOOP first learns your normal HRV and resting heart rate. Wear your strap every night.</string>
+    <string name="clean_recovery_no_data">No recovery for today yet. Wear your strap overnight and sync in the morning.</string>
+    <string name="clean_zone_high">High</string>
+    <string name="clean_zone_mid">Moderate</string>
+    <string name="clean_zone_low">Low</string>
+    <string name="clean_vs_average_above">%1$d points above your 30-day average (%2$s)</string>
+    <string name="clean_vs_average_below">%1$d points below your 30-day average (%2$s)</string>
+    <string name="clean_vs_average_same">Right on your 30-day average (%1$s)</string>
+    <string name="clean_carried_fresh">Today isn\'t scored yet – showing the latest night (%1$s).</string>
+    <string name="clean_carried_stale">No recent night – showing your latest recovery (%1$s).</string>
+    <string name="clean_drivers_title">What shaped it</string>
+    <string name="clean_drivers_explain">How much each signal lifted (green) or lowered (orange) your recovery, in points.</string>
+    <string name="clean_drivers_lowered">◀ lowered</string>
+    <string name="clean_drivers_lifted">lifted ▶</string>
+    <string name="clean_drivers_empty">Available once your recovery is scored.</string>
+    <string name="clean_driver_vs_normal">%1$s · your normal %2$s</string>
+    <string name="clean_driver_sleep_detail">%1$s · lifts recovery above %2$s</string>
+    <string name="clean_driver_skin_detail">%1$s vs. your baseline · any drift lowers recovery</string>
+    <string name="clean_history">History</string>
+    <string name="clean_range_7">7 days</string>
+    <string name="clean_range_30">30 days</string>
+    <string name="clean_range_90">90 days</string>
+    <string name="clean_recovery_chart_explain">Each bar is one morning\'s recovery, coloured by zone. Dashed: your average for the period. Touch a bar to see its day.</string>
+    <string name="clean_avg_period">Average of the last %1$d days</string>
+    <string name="clean_no_data_day">no data</string>
+    <string name="clean_no_data_period">No data in this period</string>
+    <string name="clean_legend_zone_high" formatted="false">67–100 % high</string>
+    <string name="clean_legend_zone_mid" formatted="false">34–66 % moderate</string>
+    <string name="clean_legend_zone_low" formatted="false">0–33 % low</string>
+    <string name="clean_legend_average">Average</string>
+    <string name="clean_band_normal">Normal range</string>
+    <string name="clean_hrv_chart_title">HRV – the biggest factor</string>
+    <string name="clean_hrv_chart_explain">Heart rate variability of each night. The band is your current normal range – above it you are usually well recovered.</string>
+    <string name="clean_recovery_how_title">How recovery is calculated</string>
+    <string name="clean_recovery_how_body">NOOP compares last night\'s signals with your personal normal and weighs them – HRV counts most. A signal without data is left out and the others are re-weighted.</string>
+    <string name="clean_weight_extra" formatted="false">When available, the overnight heart-rate drop and yesterday\'s strain also count about 5 % each.</string>
+
+    <!-- Strain -->
+    <string name="clean_level_light">Light</string>
+    <string name="clean_level_moderate">Moderate</string>
+    <string name="clean_level_high">High</string>
+    <string name="clean_level_all_out">All out</string>
+    <string name="clean_strain_no_data">No strain recorded today yet.</string>
+    <string name="clean_strain_target_title">Where you stand today</string>
+    <string name="clean_strain_target_explain">The scale runs from 0 to 21. The frame is the range today\'s recovery suggests; the dot is your strain so far.</string>
+    <string name="clean_strain_no_target">The scale runs from 0 to 21. A recommended range appears once your recovery is scored.</string>
+    <string name="clean_workouts_today">Workouts today</string>
+    <string name="clean_workouts_none">No workouts recorded today.</string>
+    <string name="clean_workouts_open">All workouts</string>
+    <string name="clean_strain_chart_explain">Each bar is one day\'s total strain, coloured by level. Dashed: your average for the period.</string>
+    <string name="clean_strain_how_title">What strain means</string>
+    <string name="clean_strain_how_body">Strain measures how hard your heart and circulation worked over the day, from the time you spent at higher heart rates relative to your resting and maximum heart rate. The scale is logarithmic: going from 18 to 19 takes far more effort than from 8 to 9.</string>
+
+    <!-- Sleep -->
+    <string name="clean_night_of">Night to %1$s</string>
+    <string name="clean_night_older">Earlier night</string>
+    <string name="clean_night_newer">Later night</string>
+    <string name="clean_fact_asleep">Asleep</string>
+    <string name="clean_fact_in_bed">In bed</string>
+    <string name="clean_fact_fell_asleep">Fell asleep</string>
+    <string name="clean_fact_woke">Woke up</string>
+    <string name="clean_chip_imported">Score from an import</string>
+    <string name="clean_chip_sparse">Little motion data – stages are estimates</string>
+    <string name="clean_chip_hr_only">Detected from heart rate only</string>
+    <string name="clean_need_title">Sleep vs. need</string>
+    <string name="clean_need_explain">Your sleep against the %1$s need the sleep score is based on.</string>
+    <string name="clean_need_of">%1$s of %2$s</string>
+    <string name="clean_need_met">Need met</string>
+    <string name="clean_need_short">%1$s short of your need</string>
+    <string name="clean_need_over">%1$s over your need</string>
+    <string name="clean_hypnogram_title">Night timeline</string>
+    <string name="clean_hypnogram_explain">Which stage you were in, and when. Lower lanes are deeper sleep. Touch or drag to see a moment.</string>
+    <string name="clean_hypnogram_hint">Touch the timeline</string>
+    <string name="clean_hypnogram_none">No stage timeline for this night (only totals were recorded).</string>
+    <string name="clean_stages_title">Sleep stages</string>
+    <string name="clean_stages_explain">How the night split into stages, with your average across all nights (Ø) to compare.</string>
+    <string name="clean_breakdown_title">What makes up the score</string>
+    <string name="clean_breakdown_explain">Each part is rated 0–100 and weighted. Together they give %1$s.</string>
+    <string name="clean_breakdown_unavailable">This night\'s score comes from an import and can\'t be broken down.</string>
+    <string name="clean_part_duration">Duration vs. need</string>
+    <string name="clean_part_efficiency">Efficiency (asleep ÷ in bed)</string>
+    <string name="clean_part_restorative">Restorative sleep (deep + REM)</string>
+    <string name="clean_part_regularity">Regularity</string>
+    <string name="clean_part_regularity_note">not measured yet, counts as neutral</string>
+    <string name="clean_part_points">%1$s of %2$s pts</string>
+    <string name="clean_part_weight">Weight %1$s</string>
+    <string name="clean_breakdown_footer">Duration is measured against a %1$s need; sleeping longer adds no extra points.</string>
+    <string name="clean_sleep_chart_title">Sleep duration</string>
+    <string name="clean_sleep_chart_explain">Each bar is one night. Bright bars met the need; the coloured dashed line is the need, the white one your average.</string>
+    <string name="clean_legend_need_met">Need met</string>
+    <string name="clean_legend_need_short">Below need</string>
+    <string name="clean_legend_need">Need</string>
+    <string name="clean_classic_sleep_title">Detailed sleep view</string>
+    <string name="clean_classic_sleep_body">Edit bed and wake times, naps and more in the classic view.</string>
+
+    <!-- Trends -->
+    <string name="clean_trends_subtitle">How your numbers develop</string>
+    <string name="clean_vs_previous">Change vs. the %1$d days before</string>
+    <string name="clean_no_previous">no earlier data</string>
+    <string name="clean_trend_recovery_explain">Each bar is one morning\'s recovery.</string>
+    <string name="clean_trend_strain_explain">Each bar is one day\'s strain.</string>
+    <string name="clean_trend_sleep_explain">Each bar is one night\'s sleep performance.</string>
+    <string name="clean_trend_duration_explain">Each bar is one night\'s sleep; dashed: your need.</string>
+    <string name="clean_trend_hrv_explain">HRV per night; the band is your normal range. Higher is usually better.</string>
+    <string name="clean_trend_rhr_explain">Resting heart rate per night; the band is your normal range. Lower is usually better.</string>
+    <string name="clean_trend_resp_explain">Breaths per minute during sleep; the band is your normal range. A sudden rise can be an early sign of illness.</string>
+    <string name="clean_trend_avg_only">Average %1$s.</string>
+    <string name="clean_trend_same">Average %1$s – about the same as the %2$d days before.</string>
+    <string name="clean_trend_vs_prev">Average %1$s, against %2$s in the %3$d days before.</string>
+
+    <!-- More -->
+    <string name="clean_more_subtitle">Everything else, one tap away</string>
+    <string name="clean_more_classic">Classic views</string>
+    <string name="clean_design_title">Clean design</string>
+    <string name="clean_design_body">Turn off to go back to the classic NOOP design.</string>
+</resources>
