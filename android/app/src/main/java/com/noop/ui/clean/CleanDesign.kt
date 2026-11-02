@@ -200,7 +200,11 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
         )
     }
     composable(CleanRoutes.SLEEP) {
-        CleanSleepScreen(vm = vm, onOpenClassicSleep = { nav.navigate(Destination.Sleep.route) })
+        CleanSleepScreen(
+            vm = vm,
+            onOpenClassicSleep = { nav.navigate(Destination.Sleep.route) },
+            onOpenAlarms = { nav.navigate(Destination.SmartAlarm.route) },
+        )
     }
     composable(CleanRoutes.TRENDS) { CleanTrendsScreen(vm = vm) }
     composable(CleanRoutes.MORE) { CleanMoreScreen(vm = vm, onNavigate = { nav.navigate(it) }) }

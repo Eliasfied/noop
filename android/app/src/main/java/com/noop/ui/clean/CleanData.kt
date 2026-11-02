@@ -25,6 +25,7 @@ import com.noop.ui.NoopPrefs
 import com.noop.ui.ScoreState
 import com.noop.ui.Stages
 import com.noop.ui.buildSleepModel
+import com.noop.ui.consistencyNightSpans
 import com.noop.ui.freshRestScore
 import com.noop.ui.heroDisplay
 import com.noop.ui.heroPerformanceScore
@@ -231,6 +232,9 @@ internal data class CleanNight(
     val typicalDeepMin: Double?,
     val typicalRemMin: Double?,
     val typicalLightMin: Double?,
+    /** Bedtime regularity 0-100 as the classic Sleep tab scores it (latest and mean), full history. */
+    val regularity: Double?,
+    val regularityTypical: Double?,
 )
 
 /** The loaded sleep blocks plus what is needed to pick a night out of them. */
@@ -280,8 +284,13 @@ internal class CleanNights(
             typicalDeepMin = model?.typicalDeepMin,
             typicalRemMin = model?.typicalRemMin,
             typicalLightMin = model?.typicalLightMin,
+            regularity = model?.consistency?.latest,
+            regularityTypical = model?.consistency?.typical,
         )
     }
+
+    /** The trailing nights' bed-to-wake spans, bridged the way the hero bridges a night. */
+    fun spans(limit: Int = 14): List<Pair<Long, Long>> = consistencyNightSpans(sleeps, habitualMidsleep, limit)
 
     private fun localEndDay(ts: Long): String {
         val offsetSec = (java.util.TimeZone.getDefault().getOffset(ts * 1000) / 1000).toLong()

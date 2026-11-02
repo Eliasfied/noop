@@ -520,4 +520,22 @@
     <string name="clean_health_classic_body">Vitals in detail, cycle, body clock and lab values in the classic view.</string>
     <string name="clean_health_glance_age">Body age %1$s</string>
     <string name="clean_health_glance_none">Body age and early warning</string>
+    <!-- Sleep planner and regularity -->
+    <string name="clean_planner_title">Sleep planner</string>
+    <string name="clean_planner_explain">When to be in bed tonight for a full night before your next wake-up.</string>
+    <string name="clean_planner_none">Set an alarm or record a few nights, then the planner suggests a bedtime.</string>
+    <string name="clean_planner_bed">In bed</string>
+    <string name="clean_planner_wake_phone">Wake window opens</string>
+    <string name="clean_planner_wake_strap">Strap alarm</string>
+    <string name="clean_planner_wake_usual">Your usual wake time</string>
+    <string name="clean_planner_detail">For %1$s of sleep at your usual efficiency of %2$s you need about %3$s in bed.</string>
+    <string name="clean_planner_detail_no_eff">Plans %1$s of sleep, the need the sleep score uses.</string>
+    <string name="clean_planner_now">If you fall asleep now: about %1$s of sleep.</string>
+    <string name="clean_planner_alarms">Set alarm and wind-down reminder</string>
+    <string name="clean_regularity_title">Regularity</string>
+    <string name="clean_regularity_explain" formatted="false">How evenly you fell asleep over the last 14 nights. 100 % means always at the same time; two hours of spread bring it to 0.</string>
+    <string name="clean_regularity_none">Needs at least three recorded nights.</string>
+    <string name="clean_regularity_typical">Ø %1$s</string>
+    <string name="clean_regularity_legend_night">One night, asleep to awake</string>
+    <string name="clean_regularity_legend_median">Your median times</string>
 </resources>

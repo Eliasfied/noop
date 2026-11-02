@@ -283,6 +283,45 @@ class CleanModelTest {
     }
 
     @Test
+    fun bedtimePlansTimeInBedFromTheNeedAndTheUsualEfficiency() {
+        val wake = java.time.LocalDateTime.of(2026, 11, 3, 6, 30)
+        // 480 min of sleep at 90 % efficiency is 533 min in bed: 21:37 the evening before.
+        assertEquals(java.time.LocalDateTime.of(2026, 11, 2, 21, 37), plannedBedtime(wake, 480.0, 90.0))
+        // Unknown efficiency plans the need itself; absurd efficiencies are clamped to 60 %.
+        assertEquals(java.time.LocalDateTime.of(2026, 11, 2, 22, 30), plannedBedtime(wake, 480.0, null))
+        assertEquals(java.time.LocalDateTime.of(2026, 11, 2, 17, 10), plannedBedtime(wake, 480.0, 20.0))
+    }
+
+    @Test
+    fun theNextWakeIsTodayWhileItIsStillAheadElseTomorrow() {
+        val evening = java.time.LocalDateTime.of(2026, 11, 2, 22, 0)
+        assertEquals(java.time.LocalDateTime.of(2026, 11, 3, 6, 30), nextAt(390, evening))
+        val early = java.time.LocalDateTime.of(2026, 11, 3, 2, 0)
+        assertEquals(java.time.LocalDateTime.of(2026, 11, 3, 6, 30), nextAt(390, early))
+        assertEquals(390, medianMinute(listOf(400, 380, 390)))
+        assertNull(medianMinute(emptyList()))
+    }
+
+    @Test
+    fun alarmsHonourTheirWeekdaysInTheCalendarEncoding() {
+        // 2 Nov 2026 is a Monday: Calendar.MONDAY == 2.
+        val monday = LocalDate.parse("2026-11-02")
+        assertEquals(2, calendarDayOfWeek(monday))
+        assertEquals(1, calendarDayOfWeek(monday.plusDays(6))) // Sunday
+        assertEquals(420, alarmMinuteOn(monday, true, 420, emptySet(), emptyMap()))
+        assertNull(alarmMinuteOn(monday, true, 420, setOf(1, 7), emptyMap()))
+        assertEquals(360, alarmMinuteOn(monday, true, 420, setOf(2), mapOf(2 to 360)))
+        assertNull(alarmMinuteOn(monday, false, 420, emptySet(), emptyMap()))
+        val now = java.time.LocalDateTime.of(2026, 11, 2, 23, 0)
+        // Monday's alarm has passed; Tuesday (3) is not an alarm day, so nothing within two days.
+        assertNull(nextAlarm(now) { alarmMinuteOn(it, true, 420, setOf(2), emptyMap()) })
+        assertEquals(
+            java.time.LocalDateTime.of(2026, 11, 3, 7, 0),
+            nextAlarm(now) { alarmMinuteOn(it, true, 420, emptySet(), emptyMap()) },
+        )
+    }
+
+    @Test
     fun niceTicksAreRoundAndCoverTheRange() {
         assertEquals(listOf(0.0, 20.0, 40.0, 60.0), niceTicks(60.0))
         val ticks = niceTicks(80.0, 30.0)

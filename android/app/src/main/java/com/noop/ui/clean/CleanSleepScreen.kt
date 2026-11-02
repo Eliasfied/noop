@@ -50,7 +50,7 @@ import kotlin.math.roundToInt
 // The numbers are the classic Sleep tab's: the same night pick, the same stage model, the same score.
 
 @Composable
-internal fun CleanSleepScreen(vm: AppViewModel, onOpenClassicSleep: () -> Unit) {
+internal fun CleanSleepScreen(vm: AppViewModel, onOpenClassicSleep: () -> Unit, onOpenAlarms: () -> Unit) {
     val today = rememberCleanToday(vm)
     val fmt = rememberCleanFormat()
     val nights = rememberCleanNights(vm, today.days)
@@ -58,6 +58,9 @@ internal fun CleanSleepScreen(vm: AppViewModel, onOpenClassicSleep: () -> Unit) 
     val count = nights?.count ?: 0
     val night = remember(nights, offset) { nights?.night(offset.coerceIn(0, max(count - 1, 0))) }
     var range by rememberSaveable { mutableStateOf(HistoryRange.WEEK) }
+    val spans = remember(nights) { nights?.spans().orEmpty() }
+    val plan = rememberSleepPlan(vm, today.days, spans)
+    val latestNight = remember(nights) { nights?.night(0) }
 
     CleanScreen(
         title = stringResource(R.string.clean_sleep),
@@ -88,6 +91,8 @@ internal fun CleanSleepScreen(vm: AppViewModel, onOpenClassicSleep: () -> Unit) 
             StagesCard(night, fmt, Modifier.cleanReveal(5))
             BreakdownCard(night, fmt, Modifier.cleanReveal(6))
         }
+        SleepPlannerCard(plan, fmt, onOpenAlarms, Modifier.cleanReveal(6))
+        RegularityCard(latestNight?.regularity, latestNight?.regularityTypical, spans, fmt, Modifier.cleanReveal(6))
         val needHours = RestScorer.defaultSleepNeedHours
         HistoryBarsCard(
             title = stringResource(R.string.clean_sleep_chart_title),

@@ -275,6 +275,41 @@ internal fun stageRuns(segments: List<Triple<String, Long, Long>>, joinGapSec: L
     return out
 }
 
+// MARK: Sleep planning
+
+/** Minute of the day (0..1439) of an epoch second in the device zone. */
+internal fun minuteOfDay(epochSec: Long, zone: java.time.ZoneId = java.time.ZoneId.systemDefault()): Int {
+    val t = java.time.Instant.ofEpochSecond(epochSec).atZone(zone)
+    return t.hour * 60 + t.minute
+}
+
+/** The median of minutes-of-day, or null for an empty list. Wake times sit in one half of the day, so a
+ *  plain median is fine; it is not used for bedtimes, which straddle midnight. */
+internal fun medianMinute(minutes: List<Int>): Int? {
+    if (minutes.isEmpty()) return null
+    val s = minutes.sorted()
+    val n = s.size
+    return if (n % 2 == 1) s[n / 2] else (s[n / 2 - 1] + s[n / 2]) / 2
+}
+
+/**
+ * When to be in bed to sleep [needMin] by [wake], given the share of time in bed actually spent asleep
+ * ([efficiencyPct], clamped to 60-100 %, 100 % when unknown): bedtime = wake − need ÷ efficiency.
+ */
+internal fun plannedBedtime(wake: java.time.LocalDateTime, needMin: Double, efficiencyPct: Double?): java.time.LocalDateTime {
+    val eff = (efficiencyPct ?: 100.0).coerceIn(60.0, 100.0) / 100.0
+    return wake.minusMinutes((needMin / eff).roundToInt().toLong())
+}
+
+/** The next occurrence of [minute] (minute of day) after [now]: today if still ahead, else tomorrow. */
+internal fun nextAt(minute: Int, now: java.time.LocalDateTime): java.time.LocalDateTime {
+    val today = now.toLocalDate().atStartOfDay().plusMinutes(minute.toLong())
+    return if (today.isAfter(now)) today else today.plusDays(1)
+}
+
+/** `Calendar.DAY_OF_WEEK` (1 = Sunday … 7 = Saturday), the encoding both alarm stores persist. */
+internal fun calendarDayOfWeek(date: LocalDate): Int = date.dayOfWeek.value % 7 + 1
+
 // MARK: Day series and period summaries
 
 /** One calendar day of a series. Missing days stay in the list as null, so a chart shows the gap. */

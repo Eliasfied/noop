@@ -504,4 +504,22 @@
     <string name="clean_health_classic_body">Vitalwerte im Detail, Zyklus, innere Uhr und Laborwerte in der klassischen Ansicht.</string>
     <string name="clean_health_glance_age">Körperalter %1$s</string>
     <string name="clean_health_glance_none">Körperalter und Frühwarnung</string>
+    <!-- Sleep planner and regularity -->
+    <string name="clean_planner_title">Schlafplaner</string>
+    <string name="clean_planner_explain">Wann du heute ins Bett solltest, damit du bis zum nächsten Aufwachen ausgeschlafen bist.</string>
+    <string name="clean_planner_none">Stell einen Wecker ein oder zeichne ein paar Nächte auf, dann schlägt der Planer eine Schlafenszeit vor.</string>
+    <string name="clean_planner_bed">Ins Bett</string>
+    <string name="clean_planner_wake_phone">Weckfenster beginnt</string>
+    <string name="clean_planner_wake_strap">Band-Wecker</string>
+    <string name="clean_planner_wake_usual">Deine übliche Aufwachzeit</string>
+    <string name="clean_planner_detail">Für %1$s Schlaf brauchst du bei deiner üblichen Effizienz von %2$s etwa %3$s im Bett.</string>
+    <string name="clean_planner_detail_no_eff">Plant %1$s Schlaf ein – den Bedarf, mit dem die Schlafleistung rechnet.</string>
+    <string name="clean_planner_now">Wenn du jetzt einschläfst: etwa %1$s Schlaf.</string>
+    <string name="clean_planner_alarms">Wecker und Abend-Erinnerung einstellen</string>
+    <string name="clean_regularity_title">Regelmäßigkeit</string>
+    <string name="clean_regularity_explain" formatted="false">Wie gleichmäßig du in den letzten 14 Nächten eingeschlafen bist. 100 % heißt immer zur selben Zeit; zwei Stunden Schwankung ergeben 0.</string>
+    <string name="clean_regularity_none">Braucht mindestens drei aufgezeichnete Nächte.</string>
+    <string name="clean_regularity_typical">Ø %1$s</string>
+    <string name="clean_regularity_legend_night">Eine Nacht, vom Einschlafen bis zum Aufwachen</string>
+    <string name="clean_regularity_legend_median">Deine mittleren Zeiten</string>
 </resources>
