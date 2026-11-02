@@ -522,4 +522,23 @@
     <string name="clean_regularity_typical">Ø %1$s</string>
     <string name="clean_regularity_legend_night">Eine Nacht, vom Einschlafen bis zum Aufwachen</string>
     <string name="clean_regularity_legend_median">Deine mittleren Zeiten</string>
+    <!-- Coach -->
+    <string name="clean_coach_ask">Frag den Coach</string>
+    <string name="clean_coach_brief_title">Morgen-Briefing</string>
+    <string name="clean_coach_not_set_up">KI-Coach nicht eingerichtet</string>
+    <string name="clean_coach_no_brief">Noch kein Briefing</string>
+    <string name="clean_coach_generate">Briefing jetzt erstellen</string>
+    <string name="clean_coach_setup_body">Der Coach erklärt deine Werte in einfachen Worten. Er nutzt deinen eigenen API-Schlüssel (OpenAI, Anthropic oder Gemini) oder einen KI-Server auf deinem eigenen Rechner und bekommt deine Daten erst, wenn du es erlaubst.</string>
+    <string name="clean_coach_setup_action">Coach einrichten</string>
+    <string name="clean_coach_no_brief_body">Tippe auf Aktualisieren für die heutige Zusammenfassung oder schalte das tägliche Briefing in den Coach-Einstellungen ein.</string>
+    <string name="clean_coach_failed">Das Briefing konnte nicht erstellt werden. Prüfe Schlüssel, Verbindung oder Datenfreigabe in den Coach-Einstellungen.</string>
+    <string name="clean_coach_no_consent">Die Datenfreigabe ist aus, deshalb antwortet der Coach ohne deine Werte.</string>
+    <string name="clean_coach_q_start">Wie hole ich in den ersten Wochen das meiste aus NOOP heraus?</string>
+    <string name="clean_coach_q_recovery">Meine Erholung liegt heute bei %1$s (HRV %2$s, Ruhepuls %3$s). Was bedeutet das und wie sollte ich heute trainieren?</string>
+    <string name="clean_coach_q_strain_target">Meine Belastung liegt bisher bei %1$s von 21, empfohlen sind %2$d–%3$d. Was sollte ich heute noch machen?</string>
+    <string name="clean_coach_q_strain">Meine Belastung liegt heute bei %1$s von 21. Ist das viel für mich?</string>
+    <string name="clean_coach_q_sleep_generic">Wie kann ich diese Woche besser schlafen?</string>
+    <string name="clean_coach_q_sleep">Ich habe letzte Nacht %1$s geschlafen, Schlafleistung %2$s. Was hat geholfen oder geschadet, und was sollte ich heute Abend ändern?</string>
+    <string name="clean_coach_q_stress">Mein Stress liegt heute bei %1$s von 3. Was kann ich dagegen tun?</string>
+    <string name="clean_coach_q_health">Mein Körperalter liegt bei %1$s, mein echtes Alter bei %2$d. Was würde den größten Unterschied machen?</string>
 </resources>

@@ -322,6 +322,12 @@ class CleanModelTest {
     }
 
     @Test
+    fun theBriefIsShownAsPlainText() {
+        val md = "## Today\n\n\n**Recovery** is high.\n- Train hard\n* Sleep early\n"
+        assertEquals("Today\n\nRecovery is high.\n• Train hard\n• Sleep early", briefPlainText(md))
+    }
+
+    @Test
     fun niceTicksAreRoundAndCoverTheRange() {
         assertEquals(listOf(0.0, 20.0, 40.0, 60.0), niceTicks(60.0))
         val ticks = niceTicks(80.0, 30.0)

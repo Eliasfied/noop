@@ -127,7 +127,7 @@ internal fun rememberStressCurve(vm: AppViewModel): StressWidgetProducer.Curve? 
 }
 
 @Composable
-internal fun CleanStressScreen(vm: AppViewModel, onBack: () -> Unit, onOpenBreathe: () -> Unit) {
+internal fun CleanStressScreen(vm: AppViewModel, onBack: () -> Unit, onOpenBreathe: () -> Unit, onAsk: (String) -> Unit) {
     val fmt = rememberCleanFormat()
     val days by vm.recentDays.collectAsStateWithLifecycle()
     val stress = rememberStressRead(vm, days)
@@ -143,6 +143,7 @@ internal fun CleanStressScreen(vm: AppViewModel, onBack: () -> Unit, onOpenBreat
         onBack = onBack,
     ) {
         StressHero(model, fmt, Modifier.cleanReveal(1))
+        model?.score?.let { AskCoachButton(stringResource(R.string.clean_coach_q_stress, fmt.decimal(it)), onAsk, Modifier.cleanReveal(1)) }
         DayCurveCard(curve, fmt, Modifier.cleanReveal(2))
         GlassCard(Modifier.cleanReveal(3), tint = CleanColors.trend, onClick = onOpenBreathe) {
             Row(verticalAlignment = Alignment.CenterVertically) {

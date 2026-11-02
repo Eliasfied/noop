@@ -167,7 +167,7 @@ private fun signalLabel(raw: String): String = when (raw) {
 }
 
 @Composable
-internal fun CleanHealthScreen(vm: AppViewModel, onBack: () -> Unit, onOpenClassic: () -> Unit) {
+internal fun CleanHealthScreen(vm: AppViewModel, onBack: () -> Unit, onOpenClassic: () -> Unit, onAsk: (String) -> Unit) {
     val fmt = rememberCleanFormat()
     val context = LocalContext.current
     val days by vm.recentDays.collectAsStateWithLifecycle()
@@ -183,6 +183,9 @@ internal fun CleanHealthScreen(vm: AppViewModel, onBack: () -> Unit, onOpenClass
         onBack = onBack,
     ) {
         BodyAgeHero(read, age, fmt, Modifier.cleanReveal(1))
+        read?.bodyAge?.value?.takeIf { age > 0 }?.let {
+            AskCoachButton(stringResource(R.string.clean_coach_q_health, fmt.decimal(it), age), onAsk, Modifier.cleanReveal(1))
+        }
         if (contributions.isNotEmpty() && read?.bodyAge != null) {
             ContributionsCard(contributions, Modifier.cleanReveal(2))
         }

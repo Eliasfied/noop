@@ -59,7 +59,7 @@ internal fun zoneName(zone: RecoveryZone): String = stringResource(
 )
 
 @Composable
-internal fun CleanRecoveryScreen(vm: AppViewModel, onBack: () -> Unit) {
+internal fun CleanRecoveryScreen(vm: AppViewModel, onBack: () -> Unit, onAsk: (String) -> Unit) {
     val today = rememberCleanToday(vm)
     val fmt = rememberCleanFormat()
     var range by rememberSaveable { mutableStateOf(HistoryRange.WEEK) }
@@ -74,6 +74,7 @@ internal fun CleanRecoveryScreen(vm: AppViewModel, onBack: () -> Unit) {
         onBack = onBack,
     ) {
         RecoveryHero(today, fmt, Modifier.cleanReveal(1))
+        if (scored != null) AskCoachButton(recoveryQuestion(today, fmt), onAsk, Modifier.cleanReveal(1))
         if (scored != null) {
             DriversCard(today, scored, fmt, Modifier.cleanReveal(2))
         }

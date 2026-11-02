@@ -64,6 +64,7 @@ internal fun CleanStrainScreen(
     onBack: () -> Unit,
     onOpenWorkouts: () -> Unit,
     onOpenWorkout: (WorkoutRow) -> Unit,
+    onAsk: (String) -> Unit,
 ) {
     val today = rememberCleanToday(vm)
     val fmt = rememberCleanFormat()
@@ -84,6 +85,7 @@ internal fun CleanStrainScreen(
     ) {
         StrainHero(today, fmt, Modifier.cleanReveal(1))
         TargetCard(today, fmt, Modifier.cleanReveal(2))
+        today.strain21?.let { AskCoachButton(strainQuestion(it, today.recoveryValue, fmt), onAsk, Modifier.cleanReveal(2)) }
         ZonesCard(
             title = stringResource(R.string.clean_zones_today_title),
             explanation = stringResource(R.string.clean_zones_today_explain),

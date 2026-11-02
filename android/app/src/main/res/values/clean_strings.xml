@@ -538,4 +538,23 @@
     <string name="clean_regularity_typical">Ø %1$s</string>
     <string name="clean_regularity_legend_night">One night, asleep to awake</string>
     <string name="clean_regularity_legend_median">Your median times</string>
+    <!-- Coach -->
+    <string name="clean_coach_ask">Ask the coach</string>
+    <string name="clean_coach_brief_title">Morning brief</string>
+    <string name="clean_coach_not_set_up">AI coach not set up</string>
+    <string name="clean_coach_no_brief">No brief yet</string>
+    <string name="clean_coach_generate">Create the brief now</string>
+    <string name="clean_coach_setup_body">The coach explains your numbers in plain words. It uses your own API key (OpenAI, Anthropic or Gemini) or an AI server on your own computer, and only gets your data after you allow it.</string>
+    <string name="clean_coach_setup_action">Set up the coach</string>
+    <string name="clean_coach_no_brief_body">Tap refresh for today\'s summary, or turn on the daily brief in the coach settings.</string>
+    <string name="clean_coach_failed">The brief could not be created. Check the key, the connection or the data consent in the coach settings.</string>
+    <string name="clean_coach_no_consent">Data sharing is off, so the coach answers without your numbers.</string>
+    <string name="clean_coach_q_start">How do I get the most out of NOOP in the first weeks?</string>
+    <string name="clean_coach_q_recovery">My recovery is %1$s today (HRV %2$s, resting HR %3$s). What does that mean and how should I train today?</string>
+    <string name="clean_coach_q_strain_target">My strain is %1$s of 21 so far and %2$d–%3$d is recommended. What should I still do today?</string>
+    <string name="clean_coach_q_strain">My strain is %1$s of 21 today. Is that a lot for me?</string>
+    <string name="clean_coach_q_sleep_generic">How can I sleep better this week?</string>
+    <string name="clean_coach_q_sleep">I slept %1$s last night with a sleep performance of %2$s. What helped or hurt, and what should I change tonight?</string>
+    <string name="clean_coach_q_stress">My stress is %1$s of 3 today. What can I do about it?</string>
+    <string name="clean_coach_q_health">My body age is %1$s at an actual age of %2$d. What would make the biggest difference?</string>
 </resources>

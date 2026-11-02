@@ -50,7 +50,12 @@ import kotlin.math.roundToInt
 // The numbers are the classic Sleep tab's: the same night pick, the same stage model, the same score.
 
 @Composable
-internal fun CleanSleepScreen(vm: AppViewModel, onOpenClassicSleep: () -> Unit, onOpenAlarms: () -> Unit) {
+internal fun CleanSleepScreen(
+    vm: AppViewModel,
+    onOpenClassicSleep: () -> Unit,
+    onOpenAlarms: () -> Unit,
+    onAsk: (String) -> Unit,
+) {
     val today = rememberCleanToday(vm)
     val fmt = rememberCleanFormat()
     val nights = rememberCleanNights(vm, today.days)
@@ -87,6 +92,13 @@ internal fun CleanSleepScreen(vm: AppViewModel, onOpenClassicSleep: () -> Unit, 
         } else {
             SleepHero(night, fmt, Modifier.cleanReveal(2))
             NeedCard(night, fmt, Modifier.cleanReveal(3))
+            (night.row?.totalSleepMin ?: night.stages?.asleep)?.let { asleep ->
+                AskCoachButton(
+                    stringResource(R.string.clean_coach_q_sleep, fmt.hoursMinutes(asleep), night.score?.let { fmt.percent(it) } ?: "–"),
+                    onAsk,
+                    Modifier.cleanReveal(3),
+                )
+            }
             TimelineCard(night, fmt, Modifier.cleanReveal(4))
             StagesCard(night, fmt, Modifier.cleanReveal(5))
             BreakdownCard(night, fmt, Modifier.cleanReveal(6))

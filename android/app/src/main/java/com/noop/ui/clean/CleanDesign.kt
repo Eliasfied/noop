@@ -134,6 +134,8 @@ fun NavHostController.navigateCleanTab(route: String) {
 
 /** The clean screens, registered into the shell's NavHost next to the classic ones. */
 fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
+    val openCoach: () -> Unit = { nav.navigate(Destination.Coach.route) }
+    val ask: (String) -> Unit = { askCoach(it, openCoach) }
     composable(CleanRoutes.HOME) {
         CleanHomeScreen(
             vm = vm,
@@ -144,6 +146,8 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             onOpenStress = { nav.navigate(CleanRoutes.STRESS) },
             onOpenJournal = { nav.navigate(CleanRoutes.JOURNAL) },
             onOpenHealth = { nav.navigate(CleanRoutes.HEALTH) },
+            onAsk = ask,
+            onOpenCoach = openCoach,
         )
     }
     composable(CleanRoutes.STRESS) {
@@ -151,6 +155,7 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             vm = vm,
             onBack = { nav.popBackStack() },
             onOpenBreathe = { nav.navigate(Destination.Breathe.route) },
+            onAsk = ask,
         )
     }
     composable(CleanRoutes.HEALTH) {
@@ -158,6 +163,7 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             vm = vm,
             onBack = { nav.popBackStack() },
             onOpenClassic = { nav.navigate(Destination.Health.route) },
+            onAsk = ask,
         )
     }
     composable(CleanRoutes.JOURNAL) {
@@ -167,13 +173,14 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             onOpenClassic = { nav.navigate(Destination.Insights.route) },
         )
     }
-    composable(CleanRoutes.RECOVERY) { CleanRecoveryScreen(vm = vm, onBack = { nav.popBackStack() }) }
+    composable(CleanRoutes.RECOVERY) { CleanRecoveryScreen(vm = vm, onBack = { nav.popBackStack() }, onAsk = ask) }
     composable(CleanRoutes.STRAIN) {
         CleanStrainScreen(
             vm = vm,
             onBack = { nav.popBackStack() },
             onOpenWorkouts = { nav.navigate(CleanRoutes.WORKOUTS) },
             onOpenWorkout = { nav.openCleanWorkout(it) },
+            onAsk = ask,
         )
     }
     composable(CleanRoutes.WORKOUTS) {
@@ -204,6 +211,7 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             vm = vm,
             onOpenClassicSleep = { nav.navigate(Destination.Sleep.route) },
             onOpenAlarms = { nav.navigate(Destination.SmartAlarm.route) },
+            onAsk = ask,
         )
     }
     composable(CleanRoutes.TRENDS) { CleanTrendsScreen(vm = vm) }
