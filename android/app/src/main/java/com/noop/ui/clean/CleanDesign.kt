@@ -112,6 +112,7 @@ object CleanRoutes {
     const val JOURNAL = "clean_journal"
     const val WORKOUTS = "clean_workouts"
     const val WORKOUT = "clean_workout"
+    const val HEALTH = "clean_health"
 }
 
 /**
@@ -142,6 +143,7 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             onOpenDevices = { nav.navigate(Destination.Devices.route) },
             onOpenStress = { nav.navigate(CleanRoutes.STRESS) },
             onOpenJournal = { nav.navigate(CleanRoutes.JOURNAL) },
+            onOpenHealth = { nav.navigate(CleanRoutes.HEALTH) },
         )
     }
     composable(CleanRoutes.STRESS) {
@@ -149,6 +151,13 @@ fun NavGraphBuilder.cleanGraph(nav: NavHostController, vm: AppViewModel) {
             vm = vm,
             onBack = { nav.popBackStack() },
             onOpenBreathe = { nav.navigate(Destination.Breathe.route) },
+        )
+    }
+    composable(CleanRoutes.HEALTH) {
+        CleanHealthScreen(
+            vm = vm,
+            onBack = { nav.popBackStack() },
+            onOpenClassic = { nav.navigate(Destination.Health.route) },
         )
     }
     composable(CleanRoutes.JOURNAL) {

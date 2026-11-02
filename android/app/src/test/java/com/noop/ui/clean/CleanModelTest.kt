@@ -273,6 +273,16 @@ class CleanModelTest {
     }
 
     @Test
+    fun weeklySeriesChangeComparesWithTheLastValueAMonthOld() {
+        fun r(day: String, v: Double) = com.noop.data.MetricSeriesRow("my-whoop-noop", day, "body_age", v)
+        val series = listOf(r("2026-09-20", 31.0), r("2026-09-27", 30.8), r("2026-10-04", 30.5), r("2026-10-25", 30.1), r("2026-11-01", 29.9))
+        // 30 days before 1 Nov is 2 Oct; the last stored week on or before it is 27 Sep (30.8).
+        assertEquals(29.9 - 30.8, seriesChange(series)!!, 1e-9)
+        assertNull(seriesChange(series.takeLast(1)))
+        assertNull(seriesChange(emptyList()))
+    }
+
+    @Test
     fun niceTicksAreRoundAndCoverTheRange() {
         assertEquals(listOf(0.0, 20.0, 40.0, 60.0), niceTicks(60.0))
         val ticks = niceTicks(80.0, 30.0)
