@@ -78,8 +78,14 @@ internal data class CleanToday(
     val baselines: ChargeBaselines.Resolved?,
     val importedPerf: Map<String, Double>,
 ) {
-    /** The row the vitals describe: the night the recovery dial is showing, else today's row. */
-    val vitalsRow: DailyMetric? get() = (recovery as? RecoveryRead.Scored)?.row ?: todayRow
+    /**
+     * The row the vitals describe: the night the recovery dial is showing; else today's row when it has
+     * any vitals; else the latest earlier night that does (while recovery calibrates, today's row is often
+     * still empty, and the vitals of the last measured night are what there is to show).
+     */
+    val vitalsRow: DailyMetric? get() = (recovery as? RecoveryRead.Scored)?.row
+        ?: todayRow?.takeIf(::hasVitals)
+        ?: days.lastOrNull { it.day <= todayKey && hasVitals(it) }
 
     /** Today's strain on the 0-21 axis, one decimal. */
     val strain21: Double? get() = strainStored?.let { round1(strainOn21(it)) }
@@ -90,6 +96,11 @@ internal data class CleanToday(
     /** The sleep score of any day, the same source rule as the dial (export figure first). */
     fun sleepScoreOf(row: DailyMetric): Double? = importedPerf[row.day] ?: RestScorer.restFromDaily(row)
 }
+
+/** Whether [row] carries any nightly vital the number tiles show. */
+internal fun hasVitals(row: DailyMetric): Boolean =
+    row.avgHrv != null || row.restingHr != null || row.respRateBpm != null ||
+        row.skinTempDevC != null || row.spo2Pct != null
 
 /**
  * Pure resolution of [CleanToday], using the classic Today helpers for the today row

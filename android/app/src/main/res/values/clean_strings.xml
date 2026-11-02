@@ -568,6 +568,7 @@
     <string name="clean_tile_normal">normal</string>
     <string name="clean_tile_vs_normal">%1$s vs. normal</string>
     <string name="clean_tile_today_estimated">today, estimated</string>
+    <string name="clean_tile_no_value">no reading yet</string>
 
     <!-- Coach chat -->
     <string name="clean_coach_title">Coach</string>

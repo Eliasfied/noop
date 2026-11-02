@@ -552,6 +552,7 @@
     <string name="clean_tile_normal">im Normalbereich</string>
     <string name="clean_tile_vs_normal">%1$s ggü. normal</string>
     <string name="clean_tile_today_estimated">heute, geschätzt</string>
+    <string name="clean_tile_no_value">noch kein Messwert</string>
 
     <!-- Coach chat -->
     <string name="clean_coach_title">Coach</string>

@@ -247,6 +247,19 @@ class CleanModelTest {
     }
 
     @Test
+    fun unscoredTodayShowsLastMeasuredNightsVitals() {
+        val days = listOf(
+            row("2026-10-31") { copy(avgHrv = 61.0, restingHr = 52) },
+            row("2026-11-01"),
+            row("2026-11-02") { copy(steps = 3_000) },
+        )
+        val t = resolveCleanToday(days, null, null, emptyMap(), 0.0, "2026-11-02", "2026-11-02")
+        assertEquals("2026-10-31", t.vitalsRow!!.day)
+        val measured = days.map { it.copy(day = it.day, respRateBpm = if (it.day == "2026-11-02") 14.5 else null) }
+        assertEquals("2026-11-02", resolveCleanToday(measured, null, null, emptyMap(), 0.0, "2026-11-02", "2026-11-02").vitalsRow!!.day)
+    }
+
+    @Test
     fun tabsLightTheirOwnRoutesAndMoreForEverythingElse() {
         assertEquals(0, cleanTabIndex(CleanRoutes.HOME))
         assertEquals(0, cleanTabIndex(CleanRoutes.RECOVERY))

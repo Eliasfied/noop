@@ -239,7 +239,24 @@ internal fun NumbersGrid(
                 onClick = onOpenLive,
             )
         }
-        vitals.forEach { stat -> add { m -> VitalTile(stat, fmt, m) } }
+        // The core vitals always get a tile, "–" until a night has measured them; SpO2 only when present.
+        val shown = vitals.associateBy { it.kind }
+        listOf(VitalKind.HRV, VitalKind.RESTING_HR, VitalKind.RESPIRATION, VitalKind.SKIN_TEMP, VitalKind.SPO2).forEach { kind ->
+            val stat = shown[kind]
+            when {
+                stat != null -> add { m -> VitalTile(stat, fmt, m) }
+                kind != VitalKind.SPO2 -> add { m ->
+                    NumberTile(
+                        label = vitalName(kind),
+                        value = "–",
+                        unit = null,
+                        caption = stringResource(R.string.clean_tile_no_value),
+                        captionColor = CleanColors.textTertiary,
+                        modifier = m,
+                    )
+                }
+            }
+        }
         activity?.steps?.let { steps ->
             add { m ->
                 NumberTile(
